@@ -55,7 +55,7 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("select * from park", conn);
+                    SqlCommand cmd = new SqlCommand("select * from park ORDER BY parkName ASC", conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
