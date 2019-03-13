@@ -40,10 +40,17 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult Survey()
         {
-            return View();
-        }
+            // Get a list of park codes and names to send to the view to display in dropdown
+            IList<Park> parks = parkDAO.GetParks();
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+            // Send the View a list of parks
+            ViewData["ParkList"] = parks;
+
+            // Pass in a list of parks
+            return View();
+    }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
