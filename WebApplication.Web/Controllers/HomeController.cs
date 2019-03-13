@@ -58,7 +58,7 @@ namespace WebApplication.Web.Controllers
             if(ModelState.IsValid)
             {
                 // Pass in the survey user filled out to method to save data to database.
-                survey.AddSurveyResults(survey);
+                bool surveySubmitSuccessful = surveyDAO.SubmitSurvey(survey);
 
                 // Send to a survey results page
                 return RedirectToAction("SurveyResults");
@@ -67,7 +67,13 @@ namespace WebApplication.Web.Controllers
             //Form is invalid, send user input back into the form with errors and have them try again
             else
             {
-                return View();
+                // Get a list of park codes and names to send to the view to display in dropdown
+                IList<Park> parks = parkDAO.GetParks();
+
+                // Send the View a list of parks
+                ViewData["ParkList"] = parks;
+
+                return View(survey);
             }
             
         }
