@@ -13,6 +13,7 @@
         <div class="form-group survey-fav-park-name">
             <label asp-for="ParkCode"></label>
             <select asp-for="ParkCode" class="form-control">
+                <option disabled selected> -- select a park -- </option>
                 @foreach (Park park in parksVar)
                 {
                     <option value="@park.ParkCode">@park.ParkName</option>
@@ -28,6 +29,7 @@
         <div class="form-group survey-state">
             <label asp-for="State"></label>
             <select asp-for="@Model.State" class="form-control">
+                <option disabled selected> -- select a state -- </option>
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
