@@ -16,7 +16,7 @@ namespace WebApplication.Web.Models
 
         [Required]
         [EmailAddress]
-        [Display(Name = "Your Name")]
+        [Display(Name = "Your email")]
         public string EmailAddress { get; set; }
 
         [Required]

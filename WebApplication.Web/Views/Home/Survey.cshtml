@@ -5,12 +5,12 @@
     var parksVar = (IList<Park>)ViewData["ParkList"];
 }
 
-<h2>Park Survey</h2>
+<h2 id="park-survey-h2">Park Survey</h2>
 
 @* Survey Form *@
-<form method="post" asp-controller="home" asp-action="survey">
+<form method="post" asp-controller="home" asp-action="survey" class="park-form">
     <div class="park-survey">
-        <div class="form-group">
+        <div class="form-group survey-fav-park-name">
             <label asp-for="@Model.ParkCode"></label>
             <select asp-for="@Model.ParkCode" class="form-control">
                 @foreach (Park park in parksVar)
@@ -19,11 +19,11 @@
                 }
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group survey-email">
             <label asp-for="@Model.EmailAddress"></label>
             <input asp-for="@Model.EmailAddress" type="email" class="form-control" />
         </div>
-        <div class="form-group">
+        <div class="form-group survey-state">
             <label asp-for="@Model.State"></label>
             <select asp-for="@Model.State" class="form-control">
                 <option value="AL">Alabama</option>
@@ -89,10 +89,14 @@
                 <option value="AE">Armed Forces Others</option>
             </select>
         </div>
-        <div class="form-group">
-            <label asp-for="@Model.ActivityLevel"></label>
-            <input asp-for="@Model.ActivityLevel" type="radio" value="hi" class="form-control" />
+        <label asp-for="@Model.ActivityLevel"></label>
+        <input type="radio" name="activity-level" value="inactive" checked> Inactive
+        <input type="radio" name="activity-level" value="sedentary"> Sedentary
+        <input type="radio" name="activity-level" value="active"> Active
+        <input type="radio" name="activity-level" value="extremely-active"> Extremely Active
+       
+        <div>
+            <input type="submit" value="Submit" />
         </div>
-        <input type="submit" value="Submit" />
     </div>
 </form>

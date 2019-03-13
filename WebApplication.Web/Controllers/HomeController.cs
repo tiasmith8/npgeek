@@ -48,9 +48,28 @@ namespace WebApplication.Web.Controllers
 
             // Pass in a list of parks
             return View();
-    }
+        }
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Survey(Survey survey)
+        {
+            // If the form was completely properly then Redirect user to the survey results page
+            if(ModelState.IsValid)
+            {
+                return View();
+            }
+
+            //Form is invalid, send user input back into the form with errors and have them try again
+            else
+            {
+                return View();
+            }
+            
+        }
+
+
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
