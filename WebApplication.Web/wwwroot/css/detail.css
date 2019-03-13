@@ -1,0 +1,75 @@
+﻿:root {
+    --bg-color: #EEE;
+    --border-color: #CCC;
+}
+
+.detail-view {
+    display: grid;
+    grid-template-columns: 1fr 8fr 1fr;
+    grid-template-areas: 
+        ". image ."
+        ". information ."
+        ". weather .";
+}
+
+    .detail-view .grid-image {
+        grid-area: image;
+    }
+
+    .detail-view .park-details {
+        grid-area: information;
+        display: flex;
+    }
+
+    .detail-view .weather-forecast {
+        grid-area: weather;
+        display: flex;
+        flex-flow: wrap;
+    }
+
+    .detail-view .weather-forecast h2 {
+        width: 100%;
+    }
+
+    .detail-view img {
+        width: 100%;
+    }
+
+    .detail-view .park-information, .detail-view .park-description, .detail-view .quote, div.daily-forecast {
+        border: 5px solid var(--border-color);
+        display: inline-block;
+        padding: 15px;
+        margin: 5px;
+        background-color: var(--bg-color);
+    }
+
+.park-details .park-description, .park-details .quote {
+    height: calc(50% - 50px);
+    width: calc(100% - 50px);
+}
+
+.park-details .park-information {
+    width: 30%;
+}
+
+.park-details .description-quote {
+    width: 80%;
+}
+
+div.daily-forecast {
+    width: calc(20% - 55px);
+    text-align: center;
+}
+
+.detail-view .quote {
+    text-align: center;
+}
+
+.detail-view .quote p {
+    margin-top: 35px;
+    padding: 0 50px;
+}
+
+.detail-view #quote-source {
+    margin-left: 350px;
+}

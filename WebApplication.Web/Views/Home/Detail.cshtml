@@ -1,43 +1,50 @@
 ﻿@model DetailViewModel
 @{
     ViewData["Title"] = "Detail";
+    DayOfWeek today = DateTime.Now.DayOfWeek;
+    string[] days = { "Today", "Tomorrow", ((DayOfWeek)(((int)today + 2) % 7)).ToString(), ((DayOfWeek)(((int)today + 3) % 7)).ToString(), ((DayOfWeek)(((int)today + 4) % 7)).ToString(), };
 }
 
-<main>
-    <section class="park-details">
-        <h2>@Model.park.ParkName, @Model.park.State</h2>
+<main class="detail-view">
+    <section class="grid-image">
         <div>
             <img src="~/images/@(Model.park.ParkCode).jpg" alt="Image of @Model.park.ParkName" />
         </div>
+        <h2>@Model.park.ParkName, @Model.park.State</h2>
+    </section>
+    <section class="park-details">
+        <div class="description-quote">
+            <div class="park-description">
+                <h3>Park Description</h3>
+                <p>@Model.park.ParkDescription</p>
+            </div>
+            <div class="quote">
+                <p>@Model.park.InspirationalQuote</p>
+                <p id="quote-source">~ @Model.park.InspirationalQuoteSource</p>
+            </div>
+        </div>
         <div class="park-information">
-            <h3></h3>
-            <p>Acreage: @Model.park.Acreage</p>
-            <p>Elevation: @Model.park.ElevationInFeet feet</p>
-            <p>Miles of Hiking Trail: @Model.park.MilesOfTrail</p>
-            <p>Number of Campsites: @Model.park.NumberOfCampsites</p>
-            <p>Year Founded: @Model.park.YearFounded</p>
-            <p>Average Visitors per Year: @Model.park.AnnualVisitorCount</p>
-            <p>Entry Fee: @Model.park.EntryFee</p>
-            <p>Animal Species: @Model.park.NumberOfAnimalSpecies</p>
-        </div>
-        <div class="climate-description">
+            <h3>Park Information</h3>
+            <p><span>Acreage:</span> @Model.park.Acreage</p>
+            <p><span>Elevation:</span> @Model.park.ElevationInFeet feet</p>
+            <p><span>Miles of Hiking Trail:</span> @Model.park.MilesOfTrail</p>
+            <p><span>Number of Campsites:</span> @Model.park.NumberOfCampsites</p>
+            <p><span>Year Founded:</span> @Model.park.YearFounded</p>
+            <p><span>Average Visitors per Year:</span> @Model.park.AnnualVisitorCount</p>
+            <p><span>Entry Fee:</span> @Model.park.EntryFee</p>
+            <p><span>Animal Species:</span> @Model.park.NumberOfAnimalSpecies</p>
             <p>Climate: @Model.park.Climate</p>
-            <p>@Model.park.ParkDescription</p>
-        </div>
-        <div class="quote">
-            <p>Inspiration: @Model.park.InspirationalQuote</p>
-            <p>~ @Model.park.InspirationalQuoteSource</p>
         </div>
     </section>
     <section class="weather-forecast">
+        <h2>Weather Forecast</h2>
         @foreach (Weather weather in Model.forecast)
         {
-            <div>
-                <p>Day: @weather.FiveDayForecastValue</p>
-                <img src="#" alt="Weather Image" />
-                <p><span>High</span><span>@weather.High</span></p>
-                <p><span>Low</span><span>@weather.Low</span></p>
-                <p>@weather.Forecast</p>
+            <div class="daily-forecast">
+                <p>@days[weather.FiveDayForecastValue - 1]</p>
+                <img src="~/images/@(weather.Forecast).png" alt="Weather Image" />
+                <p><span>High</span><span> @weather.High</span></p>
+                <p><span>Low</span><span> @weather.Low</span></p>
             </div>
         }
     </section>
