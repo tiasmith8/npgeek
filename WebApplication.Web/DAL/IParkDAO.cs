@@ -9,6 +9,6 @@ namespace WebApplication.Web.DAL
     public interface IParkDAO
     {
         IList<Park> GetParks();
-        Park GetPark(int parkId);
+        Park GetPark(string parkId);
     }
 }
