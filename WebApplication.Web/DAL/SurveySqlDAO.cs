@@ -16,6 +16,49 @@ namespace WebApplication.Web.DAL
 
         private string ConnectionString;
 
+        // Return a list of all surveys completed
+        public IList<SurveyResults> GetAllSurveys()
+        {
+            // Parameter to store what's returned
+            IList<SurveyResults> surveys = new List<SurveyResults>();
+
+            // Open a connection to database
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    //string sql = "SELECT * FROM survey_result;";
+                    string sql = "select p.parkName as parkname, count(*) as parkscount from survey_result sr " +
+                        "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    // Read in the survey result rows and store them in a list
+                    while(reader.Read())
+                    {
+                        SurveyResults results = new SurveyResults();
+                        results.ParksCount = Convert.ToInt32(reader["parkscount"]);
+                        results.ParkName = Convert.ToString(reader["parkname"]);
+
+                        surveys.Add(results);
+                    }
+                }
+
+                // Return the list of all surveys
+                return surveys;
+            }
+            catch(SqlException ex)
+            {
+                throw;
+            }
+
+        }
+
+
+
+        // Return a list of surveys based on parkcode
         public IList<Survey> GetSurveys(string parkId)
         {
             IList<Survey> surveys = new List<Survey>();

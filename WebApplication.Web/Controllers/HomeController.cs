@@ -80,7 +80,8 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult SurveyResults()
         {
-            return View();
+            IList<SurveyResults> surveys = surveyDAO.GetAllSurveys();
+            return View(surveys);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

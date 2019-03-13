@@ -10,5 +10,6 @@ namespace WebApplication.Web.DAL
     {
         bool SubmitSurvey(Survey survey);
         IList<Survey> GetSurveys(string parkId);
+        IList<SurveyResults> GetAllSurveys();
     }
 }
