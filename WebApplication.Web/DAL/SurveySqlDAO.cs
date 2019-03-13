@@ -31,7 +31,7 @@ namespace WebApplication.Web.DAL
 
                     //string sql = "SELECT * FROM survey_result;";
                     string sql = "select p.parkName as parkname, count(*) as parkscount from survey_result sr " +
-                        "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName;";
+                        "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName ORDER BY count(*) DESC;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 

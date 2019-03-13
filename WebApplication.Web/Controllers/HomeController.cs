@@ -60,7 +60,7 @@ namespace WebApplication.Web.Controllers
                 // Pass in the survey user filled out to method to save data to database.
                 bool surveySubmitSuccessful = surveyDAO.SubmitSurvey(survey);
 
-                // Send to a survey results page
+                // Send to a survey results page with list of survey results
                 return RedirectToAction("SurveyResults");
             }
 

@@ -1,4 +1,4 @@
-﻿
+﻿@model IList<SurveyResults>
 @{
     ViewData["Title"] = "SurveyResults";
 }
@@ -14,3 +14,8 @@ In order to avoid embarassing any of our wonderful National Parks, only show par
 a count of at least 1.*@
 
 @* Loop through a list of type Survey and display the results *@
+@foreach(SurveyResults results in @Model)
+{
+    <div>@results.ParkName</div>
+    <div>@results.ParksCount</div>
+}
