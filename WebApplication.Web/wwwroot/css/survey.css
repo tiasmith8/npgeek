@@ -1,0 +1,11 @@
+﻿#park-survey-h2 {
+    margin-left: 15px;
+}
+
+.park-form {
+    margin-left: 25px;
+}
+
+.survey-fav-park-name, .survey-email, .survey-state {
+    width: 25%;
+}
