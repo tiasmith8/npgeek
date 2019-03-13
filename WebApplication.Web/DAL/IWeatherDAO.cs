@@ -8,6 +8,6 @@ namespace WebApplication.Web.DAL
 {
     public interface IWeatherDAO
     {
-        IList<Weather> GetWeather();
+        IList<Weather> GetWeather(string parkId);
     }
 }
