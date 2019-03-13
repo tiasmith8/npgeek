@@ -5,14 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - WebApplication.Web</title>
     <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/css/detail.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
     <h1><img id="main-img" src="~/images/national-park-geek.jpg" /> National Park Geek</h1>
     <div class="HomeSurveryNav">
         <ul>
             <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a href="#">Survey</a></li>
+            <li><a asp-controller="Home" asp-action="Survey">Survey</a></li>
         </ul>
     </div>
     @RenderBody()
