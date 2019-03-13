@@ -1,7 +1,43 @@
-﻿
+﻿@model DetailViewModel
 @{
     ViewData["Title"] = "Detail";
 }
 
-<h2>Detail</h2>
-
+<main>
+    <section class="park-details">
+        <h2>@Model.park.ParkName, @Model.park.State</h2>
+        <div>
+            <img src="~/images/@(Model.park.ParkCode).jpg" alt="Image of @Model.park.ParkName" />
+        </div>
+        <div class="park-information">
+            <p>Acreage: @Model.park.Acreage</p>
+            <p>Elevation: @Model.park.ElevationInFeet feet</p>
+            <p>Miles of Hiking Trail: @Model.park.MilesOfTrail</p>
+            <p>Number of Campsites: @Model.park.NumberOfCampsites</p>
+            <p>Year Founded: @Model.park.YearFounded</p>
+            <p>Average Visitors per Year: @Model.park.AnnualVisitorCount</p>
+            <p>@Model.park.EntryFee</p>
+            <p>@Model.park.NumberOfAnimalSpecies</p>
+        </div>
+        <div class="climate-description">
+            <p>Climate: @Model.park.Climate</p>
+            <p>@Model.park.ParkDescription</p>
+        </div>
+        <div class="quote">
+            <p>Inspiration: @Model.park.InspirationalQuote</p>
+            <p>~ @Model.park.InspirationalQuoteSource</p>
+        </div>
+    </section>
+    <section class="weather-forecast">
+        @foreach (Weather weather in Model.forecast)
+        {
+            <div>
+                <p>Day: @weather.FiveDayForecastValue</p>
+                <img src="#" alt="Weather Image" />
+                <p><span>High</span><span>@weather.High</span></p>
+                <p><span>Low</span><span>@weather.Low</span></p>
+                <p>@weather.Forecast</p>
+            </div>
+        }
+    </section>
+</main>

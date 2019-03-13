@@ -23,8 +23,10 @@ namespace WebApplication.Web.Controllers
         private ISurveyDAO surveyDAO;
 
         public IActionResult Index()
-        {            
-            return View();
+        {
+            IList<Park> parks = parkDAO.GetParks();
+
+            return View(parks);
         }       
 
         [HttpGet]
