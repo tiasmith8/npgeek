@@ -16,5 +16,10 @@ namespace WebApplication.Web.Models
         /// Name of the park that is a favorite.
         /// </summary>
         public string ParkName { get; set; }
+
+        /// <summary>
+        /// The code of the park to get a picture for the view
+        /// </summary>
+        public string ParkCode { get; set; }
     }
 }

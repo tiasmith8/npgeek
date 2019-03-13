@@ -30,8 +30,8 @@ namespace WebApplication.Web.DAL
                     conn.Open();
 
                     //string sql = "SELECT * FROM survey_result;";
-                    string sql = "select p.parkName as parkname, count(*) as parkscount from survey_result sr " +
-                        "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName ORDER BY count(*) DESC;";
+                    string sql = "select p.parkName as parkname, p.parkCode as parkcode, count(*) as parkscount from survey_result sr " +
+                        "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName, p.parkCode ORDER BY count(*) DESC;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -41,6 +41,7 @@ namespace WebApplication.Web.DAL
                         SurveyResults results = new SurveyResults();
                         results.ParksCount = Convert.ToInt32(reader["parkscount"]);
                         results.ParkName = Convert.ToString(reader["parkname"]);
+                        results.ParkCode = Convert.ToString(reader["parkcode"]);
 
                         surveys.Add(results);
                     }
