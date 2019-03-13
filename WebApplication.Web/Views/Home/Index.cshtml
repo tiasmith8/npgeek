@@ -3,12 +3,6 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="HomeSurveryNav">
-    <ul>
-        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-        <li><a href="#">Survey</a></li>
-    </ul>
-</div>
 <div class="parks">
     @* Loop through all the parks and display them on the homepage *@
     @foreach (Park park in Model)
