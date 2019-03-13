@@ -3,7 +3,38 @@
     ViewData["Title"] = "Detail";
     DayOfWeek today = DateTime.Now.DayOfWeek;
     string[] days = { "Today", "Tomorrow", ((DayOfWeek)(((int)today + 2) % 7)).ToString(), ((DayOfWeek)(((int)today + 3) % 7)).ToString(), ((DayOfWeek)(((int)today + 4) % 7)).ToString(), };
+    Dictionary<string, string> preparations = new Dictionary<string, string>() { { "snow", "Pack snowshoes" }, { "rain", "Pack rain gear and wear waterproof shoes" }, { "thunderstorms", "Seek shelter and avoid hiking on exposed ridges" }, { "sunny", "Pack sunblock" }, { "hot", "Bring an extra gallon of water" }, { "variable", "Wear breathable layers" }, { "cold", "Cold Weather Warning" } };
 }
+<script>
+    function convertToCelcius() {
+        // Get the checkbox
+        var checkBox = document.getElementById("tempConvert");
+
+        var forecast = @Model.forecast;
+
+        var i;
+        for (i = 0; i < @Model.forecast.Count; i++) {
+            // Get the output text
+            var text = document.getElementById("high-temp-day-" + i);
+
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked == true) {
+            text.innerHTML = (forecast[i].High - 32) * 5 / 9 + " &#8451";
+        } else {
+            text.innerHTML = forecast[i].High + " &#8457";
+        }
+
+        var text = document.getElementById("low-temp-day-" + i);
+
+        // If the checkbox is checked, display the output text
+        if (checkBox.checked == true) {
+                text.innerHTML = (forecast[i].Low - 32) * 5 / 9 + " &#8451";
+            } else {
+                text.innerHTML = forecast[i].Low + " &#8457";
+            }
+            }
+    }
+</script>
 
 <main class="detail-view">
     <section class="grid-image">
@@ -38,13 +69,22 @@
     </section>
     <section class="weather-forecast">
         <h2>Weather Forecast</h2>
-        @foreach (Weather weather in Model.forecast)
+
+
+        <input type="checkbox" id="tempConvert" onclick="convertToCelcius()" />
+
+
+        @for (int i = 0; i < Model.forecast.Count; i++)
         {
-            <div class="daily-forecast">
-                <p>@days[weather.FiveDayForecastValue - 1]</p>
-                <img src="~/images/@(weather.Forecast).png" alt="Weather Image" />
-                <p><span>High</span><span> @weather.High</span></p>
-                <p><span>Low</span><span> @weather.Low</span></p>
+            <div class="daily-forecast day-@i">
+                <p>@days[Model.forecast[i].FiveDayForecastValue - 1]</p>
+                <img src="~/images/@(Model.forecast[i].Forecast).png" alt="Weather Image" />
+
+
+                <p>High <span id="high-temp-day-@i">@Model.forecast[i].High &#8457</span></p>
+                <p>Low <span id="low-temp-day-@i">@Model.forecast[i].Low &#8457</span></p>
+
+
             </div>
         }
     </section>
