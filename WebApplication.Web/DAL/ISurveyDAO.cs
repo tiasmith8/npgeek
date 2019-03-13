@@ -9,6 +9,6 @@ namespace WebApplication.Web.DAL
     public interface ISurveyDAO
     {
         bool SubmitSurvey(Survey survey);
-        IList<Survey> GetSurveys();
+        IList<Survey> GetSurveys(string parkId);
     }
 }
