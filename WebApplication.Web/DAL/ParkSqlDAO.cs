@@ -18,7 +18,31 @@ namespace WebApplication.Web.DAL
 
         public Park GetPark(int parkId)
         {
-            throw new NotImplementedException();
+            Park park = new Park();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("select * from park where parkCode = @parkId", conn);
+                    cmd.Parameters.AddWithValue("@parkId", parkId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        park = ConvertReaderToPark(reader);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return park;
+
         }
 
         public IList<Park> GetParks()
