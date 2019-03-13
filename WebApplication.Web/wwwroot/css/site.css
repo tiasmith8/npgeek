@@ -1,1 +1,6 @@
-﻿
+﻿/* Making park a flexbox to display on the HomeController Index page */
+.park {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

@@ -1,5 +1,22 @@
-﻿@{
+﻿@model IList<Park>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<h2>Index</h2>
+<h2>National Park Geek</h2>
+<div class="HomeSurveryNav">
+    <a asp-controller="Home" asp-action="Index">Home</a>
+    <a href="#">Survey</a>
+</div>
+<div class="parks">
+    @* Loop through all the parks and display them on the homepage *@
+    @foreach(Park park in @Model)
+    {
+        <div class="park">
+            @* List out summary view of each park *@
+            <img src="~/images/@park.ParkCode" />
+            <span>park.ParkName</span>
+            <span>park.ParkDescription</span>
+        </div>
+    }
+</div>
