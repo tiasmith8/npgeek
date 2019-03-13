@@ -1,0 +1,15 @@
+﻿@model Survey
+@{
+    ViewData["Title"] = "Survey";
+}
+
+<h2>Park Survey</h2>
+
+@* Survey Form *@
+<form method="post" asp-controller="home" asp-action="survey">
+    <label asp-for="@Model.ParkCode"></label>
+    <select asp-for="@Model.ParkCode"/>
+       
+    
+
+</form>
