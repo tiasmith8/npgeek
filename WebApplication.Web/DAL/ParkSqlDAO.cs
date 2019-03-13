@@ -16,7 +16,7 @@ namespace WebApplication.Web.DAL
 
         private string ConnectionString;
 
-        public Park GetPark(int parkId)
+        public Park GetPark(string parkId)
         {
             Park park = new Park();
 

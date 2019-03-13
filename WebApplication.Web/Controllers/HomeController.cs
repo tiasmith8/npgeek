@@ -11,19 +11,31 @@ namespace WebApplication.Web.Controllers
 {
     public class HomeController : Controller
     {
-        private IParkDAO parkDAO;
-        public HomeController(IParkDAO parkDAO)
+        public HomeController(IParkDAO parkDAO, IWeatherDAO weatherDAO, ISurveyDAO surveyDAO)
         {
             this.parkDAO = parkDAO;
+            this.weatherDAO = weatherDAO;
+            this.surveyDAO = surveyDAO;
         }
+
+        private IParkDAO parkDAO;
+        private IWeatherDAO weatherDAO;
+        private ISurveyDAO surveyDAO;
 
         public IActionResult Index()
         {
-            // Call method to return a list of all parks
             IList<Park> parks = parkDAO.GetParks();
 
             return View(parks);
         }       
+
+        [HttpGet]
+        public IActionResult Detail(string parkId)
+        {
+            DetailViewModel dvm = new DetailViewModel() { park = parkDAO.GetPark(parkId), forecast = weatherDAO.GetWeather(parkId) };
+
+            return View(dvm);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
