@@ -11,20 +11,22 @@
 <form method="post" asp-controller="home" asp-action="survey" class="park-form">
     <div class="park-survey">
         <div class="form-group survey-fav-park-name">
-            <label asp-for="@Model.ParkCode"></label>
-            <select asp-for="@Model.ParkCode" class="form-control">
+            <label asp-for="ParkCode"></label>
+            <select asp-for="ParkCode" class="form-control">
                 @foreach (Park park in parksVar)
                 {
                     <option value="@park.ParkCode">@park.ParkName</option>
                 }
             </select>
+            <span asp-validation-for="ParkCode"></span>
         </div>
         <div class="form-group survey-email">
-            <label asp-for="@Model.EmailAddress"></label>
-            <input asp-for="@Model.EmailAddress" type="email" class="form-control" />
+            <label asp-for="EmailAddress"></label>
+            <input asp-for="EmailAddress" type="email" class="form-control" />
+            <span asp-validation-for="EmailAddress"></span>
         </div>
         <div class="form-group survey-state">
-            <label asp-for="@Model.State"></label>
+            <label asp-for="State"></label>
             <select asp-for="@Model.State" class="form-control">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -88,13 +90,16 @@
                 <option value="AP">Armed Forces Pacific</option>
                 <option value="AE">Armed Forces Others</option>
             </select>
+            <span asp-validation-for="State"></span>
         </div>
-        <label asp-for="@Model.ActivityLevel"></label>
-        <input type="radio" name="activity-level" value="inactive" checked> Inactive
-        <input type="radio" name="activity-level" value="sedentary"> Sedentary
-        <input type="radio" name="activity-level" value="active"> Active
-        <input type="radio" name="activity-level" value="extremely-active"> Extremely Active
-       
+        <label asp-for="ActivityLevel">
+            <input type="radio" asp-for="ActivityLevel" value="inactive" checked> Inactive
+            <input type="radio" asp-for="ActivityLevel" value="sedentary"> Sedentary
+            <input type="radio" asp-for="ActivityLevel" value="active"> Active
+            <input type="radio" asp-for="ActivityLevel" value="extremely-active"> Extremely Active
+        </label>
+        <span asp-validation-for="ActivityLevel"></span>
+
         <div>
             <input type="submit" value="Submit" />
         </div>
