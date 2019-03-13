@@ -3,20 +3,28 @@
     ViewData["Title"] = "Home Page";
 }
 
-<h2>National Park Geek</h2>
 <div class="HomeSurveryNav">
-    <a asp-controller="Home" asp-action="Index">Home</a>
-    <a href="#">Survey</a>
+    <ul>
+        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li><a href="#">Survey</a></li>
+    </ul>
 </div>
 <div class="parks">
     @* Loop through all the parks and display them on the homepage *@
     @foreach (Park park in Model)
     {
-        <div class="park">
-            @* List out summary view of each park *@
-            <img src="~/images/@(park.ParkCode).jpg" />
-            <span>@park.ParkName</span>
-            <span>@park.ParkDescription</span>
-        </div>
+            <div class="park">
+                @* List out summary view of each park *@
+                <a asp-controller="home" asp-action="detail" asp-route-parkcode="@park.ParkCode">
+                    <div><img src="~/images/@(park.ParkCode).jpg" /></div>
+                </a>
+                
+                <div class="park-summary-content">
+                    <a asp-controller="home" asp-action="detail" asp-route-parkcode="@park.ParkCode">
+                        <h2>@park.ParkName</h2>
+                    </a>
+                        <p>@park.ParkDescription</p>
+                </div>
+            </div>
     }
 </div>

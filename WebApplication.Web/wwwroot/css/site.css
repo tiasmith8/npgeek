@@ -3,9 +3,65 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 5px 0px 5px 5px;
 }
 
 img {
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: auto;
+}
+
+.HomeSurveryNav ul {
+    display: flex;
+    padding-left: 0px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    
+}
+
+.HomeSurveryNav ul a{
+    text-decoration: none;
+    padding-right: 10px;
+}
+
+li {
+    list-style: none;
+    /*border: 1px solid red;*/
+
+}
+
+#main-img {
+    width: 70px;
+}
+
+#banner {
+    align-content: center;
+}
+
+.park-summary-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 30px;
+}
+
+.parks{
+    padding-bottom: 25px;
+}
+
+.parks a {
+    text-decoration: none;
+    color: black;
+}
+
+.park-summary-content h2 {
+    margin-bottom: 0px;
+}
+
+.park-summary-content p {
+    margin-top: 0px;
+}
+
+.park img {
+    border: 2.5px solid black;
 }
