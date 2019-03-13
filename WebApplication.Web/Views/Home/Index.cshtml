@@ -10,13 +10,13 @@
 </div>
 <div class="parks">
     @* Loop through all the parks and display them on the homepage *@
-    @foreach(Park park in @Model)
+    @foreach (Park park in Model)
     {
         <div class="park">
             @* List out summary view of each park *@
-            <img src="~/images/@park.ParkCode" />
-            <span>park.ParkName</span>
-            <span>park.ParkDescription</span>
+            <img src="~/images/@(park.ParkCode).jpg" />
+            <span>@park.ParkName</span>
+            <span>@park.ParkDescription</span>
         </div>
     }
 </div>
