@@ -57,7 +57,11 @@ namespace WebApplication.Web.Controllers
             // If the form was completely properly then Redirect user to the survey results page
             if(ModelState.IsValid)
             {
-                return View();
+                // Pass in the survey user filled out to method to save data to database.
+                survey.AddSurveyResults(survey);
+
+                // Send to a survey results page
+                return RedirectToAction("SurveyResults");
             }
 
             //Form is invalid, send user input back into the form with errors and have them try again
@@ -66,6 +70,12 @@ namespace WebApplication.Web.Controllers
                 return View();
             }
             
+        }
+
+        [HttpGet]
+        public IActionResult SurveyResults()
+        {
+            return View();
         }
 
 

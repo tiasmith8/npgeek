@@ -26,5 +26,11 @@ namespace WebApplication.Web.Models
         [Required]
         [Display(Name = "Activity level")]
         public string ActivityLevel { get; set; }
+
+        public void AddSurveyResults(Survey survey)
+        {
+
+        }
+
     }
 }
