@@ -59,34 +59,34 @@ namespace WebApplication.Web.DAL
 
 
         // Return a list of surveys based on parkcode
-        public IList<Survey> GetSurveys(string parkId)
-        {
-            IList<Survey> surveys = new List<Survey>();
+        //public IList<Survey> GetSurveys(string parkId)
+        //{
+        //    IList<Survey> surveys = new List<Survey>();
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
-                {
-                    conn.Open();
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+        //        {
+        //            conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("select * from survey_result where parkCode = @parkId", conn);
-                    cmd.Parameters.AddWithValue("@parkId", parkId);
-                    SqlDataReader reader = cmd.ExecuteReader();
+        //            SqlCommand cmd = new SqlCommand("select * from survey_result where parkCode = @parkId", conn);
+        //            cmd.Parameters.AddWithValue("@parkId", parkId);
+        //            SqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        Survey survey = ConvertReaderToSurvey(reader);
-                        surveys.Add(survey);
-                    }
-                }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
+        //            while (reader.Read())
+        //            {
+        //                Survey survey = ConvertReaderToSurvey(reader);
+        //                surveys.Add(survey);
+        //            }
+        //        }
+        //    }
+        //    catch (SqlException)
+        //    {
+        //        throw;
+        //    }
 
-            return surveys;
-        }
+        //    return surveys;
+        //}
 
         private Survey ConvertReaderToSurvey(SqlDataReader reader)
         {
