@@ -30,9 +30,9 @@ namespace WebApplication.Web.Controllers
         }       
 
         [HttpGet]
-        public IActionResult Detail(string parkId)
+        public IActionResult Detail(string parkCode)
         {
-            DetailViewModel dvm = new DetailViewModel() { park = parkDAO.GetPark(parkId), forecast = weatherDAO.GetWeather(parkId) };
+            DetailViewModel dvm = new DetailViewModel() { park = parkDAO.GetPark(parkCode), forecast = weatherDAO.GetWeather(parkCode) };
 
             return View(dvm);
         }

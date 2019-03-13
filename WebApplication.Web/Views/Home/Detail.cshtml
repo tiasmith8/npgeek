@@ -10,14 +10,15 @@
             <img src="~/images/@(Model.park.ParkCode).jpg" alt="Image of @Model.park.ParkName" />
         </div>
         <div class="park-information">
+            <h3></h3>
             <p>Acreage: @Model.park.Acreage</p>
             <p>Elevation: @Model.park.ElevationInFeet feet</p>
             <p>Miles of Hiking Trail: @Model.park.MilesOfTrail</p>
             <p>Number of Campsites: @Model.park.NumberOfCampsites</p>
             <p>Year Founded: @Model.park.YearFounded</p>
             <p>Average Visitors per Year: @Model.park.AnnualVisitorCount</p>
-            <p>@Model.park.EntryFee</p>
-            <p>@Model.park.NumberOfAnimalSpecies</p>
+            <p>Entry Fee: @Model.park.EntryFee</p>
+            <p>Animal Species: @Model.park.NumberOfAnimalSpecies</p>
         </div>
         <div class="climate-description">
             <p>Climate: @Model.park.Climate</p>
