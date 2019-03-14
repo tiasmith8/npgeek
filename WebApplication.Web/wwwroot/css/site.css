@@ -13,7 +13,7 @@ img {
 
 .HomeSurveryNav ul {
     display: flex;
-    padding-left: 0px;
+    padding-left: 7px;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding-bottom: 3px;
