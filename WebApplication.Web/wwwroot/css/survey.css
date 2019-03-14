@@ -58,3 +58,13 @@
 .survey-page{
     padding-left: 15px;
 }
+
+.radio-buttons {
+    margin-left: 148px;
+}
+
+.form-group span {
+    /*background-color: red;
+    text-align: right;*/
+    /*white-space: nowrap;*/
+}

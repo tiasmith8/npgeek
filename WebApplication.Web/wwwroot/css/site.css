@@ -46,8 +46,13 @@ li {
     margin-right: 30px;
 }
 
-.parks{
+.parks {
     padding-bottom: 25px;
+}
+
+.parks a:hover {
+    text-decoration: none;
+    color: black;
 }
 
 .parks a {
@@ -71,3 +76,6 @@ li {
     padding: 10px 0px 3px 25px;
 }
 
+.park-state {
+    font-size: 14px;
+}
