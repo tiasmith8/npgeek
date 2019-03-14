@@ -101,3 +101,7 @@ div.daily-forecast {
     border: 4px solid black;
     margin-bottom: 10px;
 }
+
+.weather-recommendation ~ p {
+    color: #b52626;
+}

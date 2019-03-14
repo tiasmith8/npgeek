@@ -62,3 +62,9 @@
 .radio-buttons {
     margin-left: 148px;
 }
+
+.form-group span {
+    /*background-color: red;
+    text-align: right;*/
+    /*white-space: nowrap;*/
+}
