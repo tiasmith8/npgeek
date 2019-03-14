@@ -43,6 +43,7 @@ li {
     flex-direction: column;
     justify-content: space-around;
     margin-left: 30px;
+    margin-right: 30px;
 }
 
 .parks{
@@ -69,3 +70,4 @@ li {
 #nav-header {
     padding: 10px 0px 3px 14px;
 }
+
