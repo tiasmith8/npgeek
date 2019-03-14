@@ -3,22 +3,38 @@
     ViewData["Title"] = "SurveyResults";
 }
 
-<h2>Favorite Parks</h2>
-<p>Here are the survey results for the favorite parks. It is listed in order of favorite
-    parks as determined by this survey!</p>
-
-@*The favorite parks page lists the parks in the order of the number 
-of surveys submitted for them. Tying parks should be listed in alphabetical order. 
-At minimum, the list must include the name of the park, and the count of their surveys. 
-In order to avoid embarassing any of our wonderful National Parks, only show parks with 
-a count of at least 1.*@
-
-@* Loop through a list of type Survey and display the results *@
-@foreach(SurveyResults results in @Model)
-{
-    <div>
-        <span><img src="~/images/@(results.ParkCode).jpg" /></span>
-        <span>@results.ParkName</span>
-        <span>@results.ParksCount</span>
+<div class="survey-page">
+    <div id="fav-parks">
+        <h2>Favorite Parks</h2>
+        <p>
+            Here are the survey results for the favorite parks. It is listed in order of favorite
+            parks as determined by this survey! Thank you for participating in the survey and
+            voting for your favorite park. Enjoy the rest of your day.
+        </p>
     </div>
-}
+    @*The favorite parks page lists the parks in the order of the number
+        of surveys submitted for them. Tying parks should be listed in alphabetical order.
+        At minimum, the list must include the name of the park, and the count of their surveys.
+        In order to avoid embarassing any of our wonderful National Parks, only show parks with
+        a count of at least 1.*@
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>National Park Name</th>
+                <th># of Votes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (SurveyResults results in @Model)
+            {
+                <tr>
+                    <td class="img-td"><span><img src="~/images/@(results.ParkCode).jpg" /></span></td>
+                    <td class="park-name"><span>@results.ParkName</span></td>
+                    <td class="num-votes"><span>@results.ParksCount</span></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

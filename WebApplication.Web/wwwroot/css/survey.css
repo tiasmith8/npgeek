@@ -1,5 +1,5 @@
 ﻿#park-survey-h2 {
-    margin-left: 15px;
+    margin-left: 25px;
 }
 
 .park-form {
@@ -17,4 +17,44 @@
 
 #activity-level-span {
     margin-right: 5px;
+}
+
+.img-td {
+    /*background-color: red;*/
+    width: 300px;
+}
+
+.img-td img {
+    border: 3px solid black;
+}
+
+.park-name {
+    width: 20%;
+    
+}
+
+#fav-parks {
+    padding-left: 10px;
+}
+
+.table thead tr th {
+    padding: 5px;
+    padding-left: 12px;
+}
+
+#fav-parks p {
+    width: 80%;
+}
+
+/* Styling for the survey page instructions */
+#vote-message {
+    padding: 0px 25px;
+    color: darkblue;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+}
+
+.survey-page{
+    padding-left: 15px;
 }
