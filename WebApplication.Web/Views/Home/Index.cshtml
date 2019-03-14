@@ -9,14 +9,16 @@
     {
             <div class="park">
                 @* List out summary view of each park *@
+                @* Park image, clicking on image takes user to detail page *@
                 <a asp-controller="home" asp-action="detail" asp-route-parkcode="@park.ParkCode">
                     <div><img src="~/images/@(park.ParkCode).jpg" /></div>
                 </a>
                 
                 <div class="park-summary-content">
                     <a asp-controller="home" asp-action="detail" asp-route-parkcode="@park.ParkCode">
-                        <h2>@park.ParkName</h2>
+                        <h2>@park.ParkName<span class="park-state"> in @park.State</span></h2>
                     </a>
+                    
                         <p>@park.ParkDescription</p>
                 </div>
             </div>
