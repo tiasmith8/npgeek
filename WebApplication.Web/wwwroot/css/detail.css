@@ -29,11 +29,7 @@
     }
 
     .detail-view .weather-forecast h2 {
-        width: 70%;
-    }
-
-    .detail-view .weather-forecast input {
-        width: 30%;
+        width: 100%;
     }
 
     .detail-view img {
@@ -94,4 +90,9 @@ div.daily-forecast {
 .detail-view .weather-recommendation {
     text-decoration: underline;
     margin: 0;
+}
+
+.grid-image img {
+    border: 4px solid black;
+    margin-bottom: 10px;
 }
