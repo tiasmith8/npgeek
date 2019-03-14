@@ -6,10 +6,7 @@
 .detail-view {
     display: grid;
     grid-template-columns: 1fr 8fr 1fr;
-    grid-template-areas: 
-        ". image ."
-        ". information ."
-        ". weather .";
+    grid-template-areas: ". image ." ". information ." ". weather .";
 }
 
     .detail-view .grid-image {
@@ -28,9 +25,9 @@
         align-items: center;
     }
 
-    .detail-view .weather-forecast h2 {
-        width: 100%;
-    }
+        .detail-view .weather-forecast h2 {
+            width: 100%;
+        }
 
     .detail-view img {
         width: 100%;
@@ -66,10 +63,10 @@
     text-align: center;
 }
 
-.detail-view .quote p {
-    margin-top: 35px;
-    padding: 0 50px;
-}
+    .detail-view .quote p {
+        margin-top: 35px;
+        padding: 0 50px;
+    }
 
 .detail-view #quote-source {
     margin-left: 350px;

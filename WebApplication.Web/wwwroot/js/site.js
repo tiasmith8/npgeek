@@ -28,6 +28,7 @@ function setTemp() {
     var checkBox = document.getElementById("tempConvert");
     var i;
     if (checkBox.checked) {
+        document.cookie = "toCelsius=true; path=/; expires = Thu, 01 Jan 1970 00: 00: 00 GMT";
         document.cookie = "toCelsius=true; path=/";
 
         for (i = 0; i < 5; i++) {
@@ -41,6 +42,7 @@ function setTemp() {
             document.getElementById("degree-type-low-day-" + i).innerHTML = " &#8451";
         }
     } else {
+        document.cookie = "toCelsius=false; path=/; expires = Thu, 01 Jan 1970 00: 00: 00 GMT";
         document.cookie = "toCelsius=false; path=/";
 
         for (i = 0; i < 5; i++) {

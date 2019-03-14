@@ -54,20 +54,22 @@
                 <p>High: <span id="high-temp-day-@i">@Model.forecast[i].High</span><span id="degree-type-high-day-@i"> &#8457</span></p>
                 <p>Low: <span id="low-temp-day-@i">@Model.forecast[i].Low</span><span id="degree-type-low-day-@i"> &#8457</span></p>
 
-                <p class="weather-recommendation">Recommendations</p>
-                <p>@preparations[Model.forecast[i].Forecast]</p>
-                @if (Model.forecast[i].High > 75)
-                {
-                    <p>@preparations["hot"]</p>
-                }
-                @if (Model.forecast[i].High - Model.forecast[i].Low >= 20)
-                {
-                    <p>@preparations["variable"]</p>
-                }
-                @if (Model.forecast[i].Low < 20)
-                {
-                    <p>@preparations["cold"]</p>
-                }
+                <div class="recommendation-statements">
+                    <p class="weather-recommendation">Recommendations</p>
+                    <p>@preparations[Model.forecast[i].Forecast]</p>
+                    @if (Model.forecast[i].High > 75)
+                    {
+                        <p>@preparations["hot"]</p>
+                    }
+                    @if (Model.forecast[i].High - Model.forecast[i].Low >= 20)
+                    {
+                        <p>@preparations["variable"]</p>
+                    }
+                    @if (Model.forecast[i].Low < 20)
+                    {
+                        <p>@preparations["cold"]</p>
+                    }
+                </div>
             </div>
         }
     </section>
