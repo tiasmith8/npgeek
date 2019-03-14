@@ -95,3 +95,9 @@ div.daily-forecast {
     text-decoration: underline;
     margin: 0;
 }
+
+/* Adds border to detail image */
+.grid-image img {
+    border: 4px solid black;
+    margin-bottom: 10px;
+}
