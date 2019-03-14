@@ -91,3 +91,8 @@ div.daily-forecast {
     width: calc(18% - 10px);
     height: 80%;
 }
+
+.grid-image img {
+    border: 4px solid black;
+    margin-bottom: 10px;
+}
