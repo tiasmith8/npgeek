@@ -29,11 +29,7 @@
     }
 
     .detail-view .weather-forecast h2 {
-        width: 70%;
-    }
-
-    .detail-view .weather-forecast input {
-        width: 30%;
+        width: 100%;
     }
 
     .detail-view img {
