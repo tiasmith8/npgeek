@@ -1,38 +1,61 @@
 ﻿@model DetailViewModel
+@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Detail";
     DayOfWeek today = DateTime.Now.DayOfWeek;
     string[] days = { "Today", "Tomorrow", ((DayOfWeek)(((int)today + 2) % 7)).ToString(), ((DayOfWeek)(((int)today + 3) % 7)).ToString(), ((DayOfWeek)(((int)today + 4) % 7)).ToString(), };
-    Dictionary<string, string> preparations = new Dictionary<string, string>() { { "snow", "Pack snowshoes" }, { "rain", "Pack rain gear and wear waterproof shoes" }, { "thunderstorms", "Seek shelter and avoid hiking on exposed ridges" }, { "sunny", "Pack sunblock" }, { "hot", "Bring an extra gallon of water" }, { "variable", "Wear breathable layers" }, { "cold", "Cold Weather Warning" } };
+    Dictionary<string, string> preparations = new Dictionary<string, string>() { { "snow", "Pack snowshoes" }, { "rain", "Pack rain gear and wear waterproof shoes" }, { "thunderstorms", "Seek shelter and avoid hiking on exposed ridges" }, { "sunny", "Pack sunblock" }, { "hot", "Bring an extra gallon of water" }, { "variable", "Wear breathable layers" }, { "cold", "Cold Weather Warning" }, { "partly cloudy", "Partly cloudy skies" } };
 }
 <script>
+    if (typeof (Storage) !== "undefined") {
+        if (sessionStorage.toCelcius == null) {
+            sessionStorage.toCelcius = false;
+        }
+    }
+
     function convertToCelcius() {
         // Get the checkbox
         var checkBox = document.getElementById("tempConvert");
 
-        var forecast = @Model.forecast;
+        sessionStorage.toCelcius = checkBox.checked;
 
         var i;
-        for (i = 0; i < @Model.forecast.Count; i++) {
+        for (i = 0; i < 5; i++) {
             // Get the output text
             var text = document.getElementById("high-temp-day-" + i);
 
             // If the checkbox is checked, display the output text
             if (checkBox.checked == true) {
-            text.innerHTML = (forecast[i].High - 32) * 5 / 9 + " &#8451";
-        } else {
-            text.innerHTML = forecast[i].High + " &#8457";
-        }
-
-        var text = document.getElementById("low-temp-day-" + i);
-
-        // If the checkbox is checked, display the output text
-        if (checkBox.checked == true) {
-                text.innerHTML = (forecast[i].Low - 32) * 5 / 9 + " &#8451";
+                text.innerHTML = Math.round((text.innerHTML - 32) * 5 / 9);
             } else {
-                text.innerHTML = forecast[i].Low + " &#8457";
+                text.innerHTML = Math.round((text.innerHTML * 9 / 5 + 32));
             }
+
+            var text = document.getElementById("low-temp-day-" + i);
+
+            // If the checkbox is checked, display the output text
+            if (checkBox.checked == true) {
+                text.innerHTML = Math.round((text.innerHTML - 32) * 5 / 9);
+            } else {
+                text.innerHTML = Math.round((text.innerHTML * 9 / 5 + 32));
             }
+
+            var text = document.getElementById("degree-type-high-day-" + i);
+
+            if (checkBox.checked == true) {
+                    text.innerHTML = " &#8451";
+                } else {
+                    text.innerHTML = " &#8457";
+                }
+
+            var text = document.getElementById("degree-type-low-day-" + i);
+
+            if (checkBox.checked == true) {
+                text.innerHTML = " &#8451";
+            } else {
+                text.innerHTML = " &#8457";
+            }
+        }
     }
 </script>
 
@@ -81,10 +104,23 @@
                 <img src="~/images/@(Model.forecast[i].Forecast).png" alt="Weather Image" />
 
 
-                <p>High <span id="high-temp-day-@i">@Model.forecast[i].High &#8457</span></p>
-                <p>Low <span id="low-temp-day-@i">@Model.forecast[i].Low &#8457</span></p>
+                <p>High: <span id="high-temp-day-@i">@Model.forecast[i].High</span><span id="degree-type-high-day-@i"> &#8457</span></p>
+                <p>Low: <span id="low-temp-day-@i">@Model.forecast[i].Low</span><span id="degree-type-low-day-@i"> &#8457</span></p>
 
-
+                <p class="weather-recommendation">Recommendations</p>
+                <p>@preparations[Model.forecast[i].Forecast]</p>
+                @if (Model.forecast[i].High > 75)
+                {
+                    <p>@preparations["hot"]</p>
+                }
+                @if (Model.forecast[i].High - Model.forecast[i].Low >= 20)
+                {
+                    <p>@preparations["variable"]</p>
+                }
+                @if (Model.forecast[i].Low < 20)
+                {
+                    <p>@preparations["cold"]</p>
+                }
             </div>
         }
     </section>

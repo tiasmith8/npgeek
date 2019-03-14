@@ -89,5 +89,9 @@ div.daily-forecast {
 
 .day-1, .day-2, .day-3, .day-4 {
     width: calc(18% - 10px);
-    height: 80%;
+}
+
+.detail-view .weather-recommendation {
+    text-decoration: underline;
+    margin: 0;
 }
