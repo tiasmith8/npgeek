@@ -1,5 +1,5 @@
 ﻿#park-survey-h2 {
-    margin-left: 15px;
+    margin-left: 25px;
 }
 
 .park-form {
@@ -44,4 +44,17 @@
 
 #fav-parks p {
     width: 80%;
+}
+
+/* Styling for the survey page instructions */
+#vote-message {
+    padding: 0px 25px;
+    color: darkblue;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 18px;
+}
+
+.survey-page{
+    padding-left: 15px;
 }

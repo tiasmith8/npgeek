@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 5px 0px 5px 5px;
+    padding: 5px 0px 5px 25px;
 }
 
 img {
@@ -13,7 +13,7 @@ img {
 
 .HomeSurveryNav ul {
     display: flex;
-    padding-left: 7px;
+    padding-left: 25px;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding-bottom: 3px;
@@ -68,6 +68,6 @@ li {
 }
 
 #nav-header {
-    padding: 10px 0px 3px 14px;
+    padding: 10px 0px 3px 25px;
 }
 

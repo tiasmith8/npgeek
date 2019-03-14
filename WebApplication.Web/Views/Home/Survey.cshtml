@@ -5,7 +5,13 @@
     var parksVar = (IList<Park>)ViewData["ParkList"];
 }
 
-<h2 id="park-survey-h2">Park Survey</h2>
+<h2 id="park-survey-h2">Favorite National Park Survey</h2>
+<p id="vote-message">
+    Today's survey is voting on your favorite park! Please vote for your favorite national 
+    park. After you vote, you may view the total results for all users surveyed!
+    Wouldn't it be nice if your favorite park were number 1!? Well, you can help 
+    make that happen. Vote today! 
+</p>
 
 @* Survey Form *@
 <form method="post" asp-controller="home" asp-action="survey" class="park-form">
