@@ -44,6 +44,7 @@ li {
 #main-img {
     width: 100px;
     padding-bottom: 7px;
+    border-radius: 50%;
 }
 
 #banner {
@@ -102,9 +103,23 @@ li {
 
 /* Styling for the Celsius Converter checkbox */
 .converter-container {
-    color: var(--border-color);
+    /*color: var(--border-color);*/
+    color: #d4afaf;
     padding-top: 2px;
     padding-left: 3px;
+}
+
+#survey-logo {
+    width: 200px;
+    padding-right: 2px;
+}
+
+#mountain {
+    width: 60px;
+}
+
+#tempConvert {
+    padding: 20px;
 }
 
 .detail-view {
