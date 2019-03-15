@@ -42,13 +42,14 @@ namespace WebApplication.Tests.DAL
                 // Execute the setup script
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
-                    conn.Open();
+                    conn.Open(); // Open th connection
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     // If there is a row to read
                     if (reader.Read())
                     {
+                        // Store the id for the test data survey to be used in subclass
                         this.NewSurveyId = Convert.ToInt32(reader["newSurveyId"]);
                     }
                 }
@@ -75,9 +76,12 @@ namespace WebApplication.Tests.DAL
         {
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
-                conn.Open();
+                conn.Open(); // Open the connection
+                // Get a row count for the input table.
                 SqlCommand cmd = new SqlCommand($"SELECT COUNT(*) FROM {table}", conn);
+                // Store number of rows into count variable by executing query to pull from database.
                 int count = Convert.ToInt32(cmd.ExecuteScalar());
+                // Return the number of rows in the requested table.
                 return count;
             }
         }
