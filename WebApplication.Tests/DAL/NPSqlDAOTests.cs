@@ -14,11 +14,6 @@ namespace WebApplication.Tests.DAL
         protected string ConnectionString { get; } = "Server=.\\SQLEXPRESS;Database=NPGeek;Trusted_Connection=True;";
 
         /// <summary>
-        /// Holds the newly generated park id for test data.
-        /// </summary>
-        protected string NewParkId { get; private set; }
-
-        /// <summary>
         /// Holds the newly generated survey id for integration test data.
         /// </summary>
         protected int NewSurveyId { get; private set; }
