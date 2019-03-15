@@ -79,3 +79,9 @@ li {
 .park-state {
     font-size: 14px;
 }
+
+.converter-container {
+    position: relative;
+    left: 75%;
+    color: #007bff;
+}
