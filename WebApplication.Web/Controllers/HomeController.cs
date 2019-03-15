@@ -11,6 +11,12 @@ namespace WebApplication.Web.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Creates a new home controller using dependency injection to allow access to data
+        /// </summary>
+        /// <param name="parkDAO">An object able to receive Park data</param>
+        /// <param name="weatherDAO">An object able to receive Weather data</param>
+        /// <param name="surveyDAO">An object able to receive/report survey data</param>
         public HomeController(IParkDAO parkDAO, IWeatherDAO weatherDAO, ISurveyDAO surveyDAO)
         {
             this.parkDAO = parkDAO;
@@ -22,6 +28,7 @@ namespace WebApplication.Web.Controllers
         private IWeatherDAO weatherDAO;
         private ISurveyDAO surveyDAO;
 
+        // /Home/Index shows a list of parks with short descriptions
         public IActionResult Index()
         {
             IList<Park> parks = parkDAO.GetParks();
@@ -29,6 +36,7 @@ namespace WebApplication.Web.Controllers
             return View(parks);
         }       
 
+        // /Home/Detail shows additional information for a particular park including a 5-day forecast
         [HttpGet]
         public IActionResult Detail(string parkCode)
         {
@@ -37,6 +45,7 @@ namespace WebApplication.Web.Controllers
             return View(dvm);
         }
 
+        // /Home/Survey Get gives a description of surveys and allows user to complete survey form
         [HttpGet]
         public IActionResult Survey()
         {
@@ -50,6 +59,8 @@ namespace WebApplication.Web.Controllers
             return View();
         }
 
+        // ?Home/Survey Post is called once a user submits a survey. Controller determines whether
+        //              survey requirements are met and redirects user appropriately
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Survey(Survey survey)
@@ -77,6 +88,7 @@ namespace WebApplication.Web.Controllers
             }
         }
 
+        // /Home/SurveyResults User is shown how many surveys are completed for each park that has completed surveys
         [HttpGet]
         public IActionResult SurveyResults()
         {
