@@ -18,7 +18,7 @@ namespace WebApplication.Web
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,7 +30,7 @@ namespace WebApplication.Web
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This determines whether user consent for non-essential cookies
-                //is needed.
+                // is needed.
                 options.CheckConsentNeeded = context => false;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -47,14 +47,15 @@ namespace WebApplication.Web
             // For Authentication to work
             // For access to session outside of controller
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             // For access to an authentication provider
             services.AddScoped<IAuthProvider, SessionAuthProvider>();
-            // For access to a dao
-            services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("NPGeek")));
-            services.AddTransient<IParkDAO>(m => new ParkSqlDAO(Configuration.GetConnectionString("NPGeek")));
-            services.AddTransient<IWeatherDAO>(m => new WeatherSqlDAO(Configuration.GetConnectionString("NPGeek")));
-            services.AddTransient<ISurveyDAO>(m => new SurveySqlDAO(Configuration.GetConnectionString("NPGeek")));
 
+            // For access to a dao
+            services.AddTransient<IUserDAO>(m => new UserSqlDAO(this.Configuration.GetConnectionString("NPGeek")));
+            services.AddTransient<IParkDAO>(m => new ParkSqlDAO(this.Configuration.GetConnectionString("NPGeek")));
+            services.AddTransient<IWeatherDAO>(m => new WeatherSqlDAO(this.Configuration.GetConnectionString("NPGeek")));
+            services.AddTransient<ISurveyDAO>(m => new SurveySqlDAO(this.Configuration.GetConnectionString("NPGeek")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
