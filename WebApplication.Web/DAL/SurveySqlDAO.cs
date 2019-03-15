@@ -54,40 +54,7 @@ namespace WebApplication.Web.DAL
             {
                 throw;
             }
-
         }
-
-
-
-        // Return a list of surveys based on parkcode
-        //public IList<Survey> GetSurveys(string parkId)
-        //{
-        //    IList<Survey> surveys = new List<Survey>();
-
-        //    try
-        //    {
-        //        using (SqlConnection conn = new SqlConnection(this.ConnectionString))
-        //        {
-        //            conn.Open();
-
-        //            SqlCommand cmd = new SqlCommand("select * from survey_result where parkCode = @parkId", conn);
-        //            cmd.Parameters.AddWithValue("@parkId", parkId);
-        //            SqlDataReader reader = cmd.ExecuteReader();
-
-        //            while (reader.Read())
-        //            {
-        //                Survey survey = ConvertReaderToSurvey(reader);
-        //                surveys.Add(survey);
-        //            }
-        //        }
-        //    }
-        //    catch (SqlException)
-        //    {
-        //        throw;
-        //    }
-
-        //    return surveys;
-        //}
 
         private Survey ConvertReaderToSurvey(SqlDataReader reader)
         {
@@ -103,6 +70,11 @@ namespace WebApplication.Web.DAL
             return survey;
         }
 
+        /// <summary>
+        /// Adds a completed survey into data
+        /// </summary>
+        /// <param name="survey">A completed Survey</param>
+        /// <returns>True if a survey is added correctly</returns>
         public bool SubmitSurvey(Survey survey)
         {
             bool isAdded;
