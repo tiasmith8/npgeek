@@ -17,15 +17,16 @@ img {
     height: auto;
 }
 
-.HomeSurveryNav ul {
+.HomeSurveyNav ul {
     display: flex;
     padding-left: 25px;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
     padding-bottom: 3px;
+    padding-top: 10px;
 }
 
-    .HomeSurveryNav ul a {
+    .HomeSurveyNav ul a {
         text-decoration: none;
         padding-right: 10px;
     }
@@ -77,8 +78,15 @@ li {
     border: 2.5px solid black;
 }
 
+/* Id for logo and header text at the top of the page */
 #nav-header {
     padding: 10px 0px 3px 25px;
+}
+
+/* Take away underline for header text */
+#nav-header a {
+    text-decoration: none;
+    color: #8f5620;
 }
 
 .park-state {
@@ -265,6 +273,3 @@ div.daily-forecast {
     /*white-space: nowrap;*/
 }
 
-.HomeSurveryNav ul {
-    padding-top: 10px;
-}
