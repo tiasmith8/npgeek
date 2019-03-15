@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using WebApplication.Web.Providers.Auth;
 
 namespace WebApplication.Web.ViewComponents
@@ -14,7 +14,8 @@ namespace WebApplication.Web.ViewComponents
     public class NavBarViewComponent : ViewComponent
     {
         // Components allow dependency injection just like controllers.
-        private IAuthProvider authProvider;
+        private readonly IAuthProvider authProvider;
+
         public NavBarViewComponent(IAuthProvider authProvider)
         {
             this.authProvider = authProvider;
@@ -23,11 +24,11 @@ namespace WebApplication.Web.ViewComponents
         /// <summary>
         /// This is the method that is invoked when the component is told to "render".
         /// </summary>
-        /// <returns></returns>
+        /// <returns>IViewComponentResult</returns>
         public IViewComponentResult Invoke()
         {
-            var user = authProvider.GetCurrentUser();
-            return View("_NavBar", user);
+            var user = this.authProvider.GetCurrentUser();
+            return this.View("_NavBar", user);
         }
     }
 }

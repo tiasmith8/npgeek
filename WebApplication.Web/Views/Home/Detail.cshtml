@@ -10,32 +10,32 @@
 <main class="detail-view">
     <section class="grid-image">
         <div>
-            <img src="~/images/@(Model.park.ParkCode).jpg" alt="Image of @Model.park.ParkName" />
+            <img src="~/images/@(Model.Park.ParkCode).jpg" alt="Image of @Model.Park.ParkName" />
         </div>
-        <h2>@Model.park.ParkName, @Model.park.State</h2>
+        <h2>@Model.Park.ParkName, @Model.Park.State</h2>
     </section>
     <section class="park-details">
         <div class="description-quote">
             <div class="park-description">
                 <h3>Park Description</h3>
-                <p>@Model.park.ParkDescription</p>
+                <p>@Model.Park.ParkDescription</p>
             </div>
             <div class="quote">
-                <p>@Model.park.InspirationalQuote</p>
-                <p id="quote-source">~ @Model.park.InspirationalQuoteSource</p>
+                <p>@Model.Park.InspirationalQuote</p>
+                <p id="quote-source">~ @Model.Park.InspirationalQuoteSource</p>
             </div>
         </div>
         <div class="park-information">
             <h3>Park Information</h3>
-            <p><span>Acreage:</span> @Model.park.Acreage</p>
-            <p><span>Elevation:</span> @Model.park.ElevationInFeet feet</p>
-            <p><span>Miles of Hiking Trail:</span> @Model.park.MilesOfTrail</p>
-            <p><span>Number of Campsites:</span> @Model.park.NumberOfCampsites</p>
-            <p><span>Year Founded:</span> @Model.park.YearFounded</p>
-            <p><span>Average Visitors per Year:</span> @Model.park.AnnualVisitorCount</p>
-            <p><span>Entry Fee:</span> @Model.park.EntryFee</p>
-            <p><span>Animal Species:</span> @Model.park.NumberOfAnimalSpecies</p>
-            <p>Climate: @Model.park.Climate</p>
+            <p><span>Acreage:</span> @Model.Park.Acreage</p>
+            <p><span>Elevation:</span> @Model.Park.ElevationInFeet feet</p>
+            <p><span>Miles of Hiking Trail:</span> @Model.Park.MilesOfTrail</p>
+            <p><span>Number of Campsites:</span> @Model.Park.NumberOfCampsites</p>
+            <p><span>Year Founded:</span> @Model.Park.YearFounded</p>
+            <p><span>Average Visitors per Year:</span> @Model.Park.AnnualVisitorCount</p>
+            <p><span>Entry Fee:</span> @Model.Park.EntryFee</p>
+            <p><span>Animal Species:</span> @Model.Park.NumberOfAnimalSpecies</p>
+            <p>Climate: @Model.Park.Climate</p>
         </div>
     </section>
     <section class="weather-forecast">
@@ -44,28 +44,28 @@
 
 
 
-        @for (int i = 0; i < Model.forecast.Count; i++)
+        @for (int i = 0; i < Model.Forecast.Count; i++)
         {
             <div class="daily-forecast day-@i">
-                <h5>@days[Model.forecast[i].FiveDayForecastValue - 1]</h5>
-                <img src="~/images/@(Model.forecast[i].Forecast).png" alt="Weather Image" />
+                <h5>@days[Model.Forecast[i].FiveDayForecastValue - 1]</h5>
+                <img src="~/images/@(Model.Forecast[i].Forecast).png" alt="Weather Image" />
 
 
-                <p>High: <span id="high-temp-day-@i">@Model.forecast[i].High</span><span id="degree-type-high-day-@i"> &#8457</span></p>
-                <p>Low: <span id="low-temp-day-@i">@Model.forecast[i].Low</span><span id="degree-type-low-day-@i"> &#8457</span></p>
+                <p>High: <span id="high-temp-day-@i">@Model.Forecast[i].High</span><span id="degree-type-high-day-@i"> &#8457</span></p>
+                <p>Low: <span id="low-temp-day-@i">@Model.Forecast[i].Low</span><span id="degree-type-low-day-@i"> &#8457</span></p>
 
                 <div class="recommendation-statements">
                     <p class="weather-recommendation">Recommendations</p>
-                    <p>@preparations[Model.forecast[i].Forecast]</p>
-                    @if (Model.forecast[i].High > 75)
+                    <p>@preparations[Model.Forecast[i].Forecast]</p>
+                    @if (Model.Forecast[i].High > 75)
                     {
                         <p>@preparations["hot"]</p>
                     }
-                    @if (Model.forecast[i].High - Model.forecast[i].Low > 20)
+                    @if (Model.Forecast[i].High - Model.Forecast[i].Low > 20)
                     {
                         <p>@preparations["variable"]</p>
                     }
-                    @if (Model.forecast[i].Low < 20)
+                    @if (Model.Forecast[i].Low < 20)
                     {
                         <p>@preparations["cold"]</p>
                     }

@@ -9,16 +9,17 @@ namespace WebApplication.Web.DAL
 {
     public class ParkSqlDAO : IParkDAO
     {
+        private readonly string connectionString;
+
         /// <summary>
+        /// Initializes a new instance of the <see cref="ParkSqlDAO"/> class.
         /// Creates a new ParkSqlDAO
         /// </summary>
         /// <param name="connectionString">Location of data</param>
         public ParkSqlDAO(string connectionString)
         {
-            this.ConnectionString = connectionString;
+            this.connectionString = connectionString;
         }
-
-        private string ConnectionString;
 
         /// <summary>
         /// Returns a Park based on parkId
@@ -31,7 +32,7 @@ namespace WebApplication.Web.DAL
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
 
@@ -41,7 +42,7 @@ namespace WebApplication.Web.DAL
 
                     while (reader.Read())
                     {
-                        park = ConvertReaderToPark(reader);
+                        park = this.ConvertReaderToPark(reader);
                     }
                 }
             }
@@ -51,20 +52,19 @@ namespace WebApplication.Web.DAL
             }
 
             return park;
-
         }
 
         /// <summary>
-        /// Returns an IList<> of all Parks found in data
+        /// Returns a complete list of Parks from data source
         /// </summary>
-        /// <returns>IList<> of Parks</returns>
+        /// <returns>An IList<> of Parks</returns>
         public IList<Park> GetParks()
         {
             IList<Park> parks = new List<Park>();
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
 
@@ -73,7 +73,7 @@ namespace WebApplication.Web.DAL
 
                     while (reader.Read())
                     {
-                        Park park = ConvertReaderToPark(reader);
+                        Park park = this.ConvertReaderToPark(reader);
                         parks.Add(park);
                     }
                 }

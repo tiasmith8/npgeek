@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApplication.Web.Providers.Auth
 {
@@ -24,14 +24,15 @@ namespace WebApplication.Web.Providers.Auth
         /// <summary>
         /// Called after the action executes.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">context</param>
         public void OnActionExecuted(ActionExecutedContext context)
-        { }
+        {
+        }
 
         /// <summary>
         /// Called before the action executes.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">context</param>
         public void OnActionExecuting(ActionExecutingContext context)
         {
             // Get the authentication provider. Attributes don't support constructor injection
@@ -39,18 +40,18 @@ namespace WebApplication.Web.Providers.Auth
 
             // If they aren't logged in, force them to login first.
             if (!authProvider.IsLoggedIn)
-            {                
+            {
                 context.Result = new RedirectToRouteResult(new
                 {
                     controller = "account",
-                    action = "login",                    
+                    action = "login",
                 });
                 return;
             }
 
             // If they are logged in and the user doesn't have any of the roles
             // give them a 403
-            if (roles.Length > 0 && !authProvider.UserHasRole(roles))
+            if (this.roles.Length > 0 && !authProvider.UserHasRole(this.roles))
             {
                 // User shouldn't have access
                 context.Result = new StatusCodeResult(403);

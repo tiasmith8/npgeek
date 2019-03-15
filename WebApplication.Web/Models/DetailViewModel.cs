@@ -8,13 +8,13 @@ namespace WebApplication.Web.Models
     public class DetailViewModel
     {
         /// <summary>
-        /// Park with all details to be shown on page
+        /// Gets or sets Park with all details to be shown on page
         /// </summary>
-        public Park park { get; set; }
+        public Park Park { get; set; }
 
         /// <summary>
-        /// 5-Day forecast for park to be displayed on page
+        /// Gets or sets 5-Day forecast for park to be displayed on page
         /// </summary>
-        public IList<Weather> forecast { get; set; }
+        public IList<Weather> Forecast { get; set; }
     }
 }
