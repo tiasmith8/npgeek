@@ -11,7 +11,12 @@ namespace WebApplication.Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IParkDAO parkDAO;
+        private readonly IWeatherDAO weatherDAO;
+        private readonly ISurveyDAO surveyDAO;
+
         /// <summary>
+        /// Initializes a new instance of the <see cref="HomeController"/> class.
         /// Creates a new home controller using dependency injection to allow access to data
         /// </summary>
         /// <param name="parkDAO">An object able to receive Park data</param>
@@ -24,25 +29,21 @@ namespace WebApplication.Web.Controllers
             this.surveyDAO = surveyDAO;
         }
 
-        private IParkDAO parkDAO;
-        private IWeatherDAO weatherDAO;
-        private ISurveyDAO surveyDAO;
-
         // /Home/Index shows a list of parks with short descriptions
         public IActionResult Index()
         {
-            IList<Park> parks = parkDAO.GetParks();
+            IList<Park> parks = this.parkDAO.GetParks();
 
-            return View(parks);
-        }       
+            return this.View(parks);
+        }
 
         // /Home/Detail shows additional information for a particular park including a 5-day forecast
         [HttpGet]
         public IActionResult Detail(string parkCode)
         {
-            DetailViewModel dvm = new DetailViewModel() { park = parkDAO.GetPark(parkCode), forecast = weatherDAO.GetWeather(parkCode) };
+            DetailViewModel dvm = new DetailViewModel() { park = this.parkDAO.GetPark(parkCode), forecast = this.weatherDAO.GetWeather(parkCode) };
 
-            return View(dvm);
+            return this.View(dvm);
         }
 
         // /Home/Survey Get gives a description of surveys and allows user to complete survey form
@@ -50,13 +51,13 @@ namespace WebApplication.Web.Controllers
         public IActionResult Survey()
         {
             // Get a list of park codes and names to send to the view to display in dropdown
-            IList<Park> parks = parkDAO.GetParks();
+            IList<Park> parks = this.parkDAO.GetParks();
 
             // Send the View a list of parks
-            ViewData["ParkList"] = parks;
+            this.ViewData["ParkList"] = parks;
 
             // Pass in a list of parks
-            return View();
+            return this.View();
         }
 
         // ?Home/Survey Post is called once a user submits a survey. Controller determines whether
@@ -66,25 +67,25 @@ namespace WebApplication.Web.Controllers
         public IActionResult Survey(Survey survey)
         {
             // If the form was completely properly then Redirect user to the survey results page
-            if(ModelState.IsValid)
+            if (this.ModelState.IsValid)
             {
                 // Pass in the survey user filled out to method to save data to database.
-                bool surveySubmitSuccessful = surveyDAO.SubmitSurvey(survey);
+                bool surveySubmitSuccessful = this.surveyDAO.SubmitSurvey(survey);
 
                 // Send to a survey results page with list of survey results
-                return RedirectToAction("SurveyResults");
+                return this.RedirectToAction("SurveyResults");
             }
 
-            //Form is invalid, send user input back into the form with errors and have them try again
+            // Form is invalid, send user input back into the form with errors and have them try again
             else
             {
                 // Get a list of park codes and names to send to the view to display in dropdown
-                IList<Park> parks = parkDAO.GetParks();
+                IList<Park> parks = this.parkDAO.GetParks();
 
                 // Send the View a list of parks
-                ViewData["ParkList"] = parks;
+                this.ViewData["ParkList"] = parks;
 
-                return View(survey);
+                return this.View(survey);
             }
         }
 
@@ -92,14 +93,14 @@ namespace WebApplication.Web.Controllers
         [HttpGet]
         public IActionResult SurveyResults()
         {
-            IList<SurveyResults> surveys = surveyDAO.GetAllSurveys();
-            return View(surveys);
+            IList<SurveyResults> surveys = this.surveyDAO.GetAllSurveys();
+            return this.View(surveys);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
     }
 }
