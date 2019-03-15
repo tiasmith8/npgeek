@@ -9,12 +9,12 @@ namespace WebApplication.Web.DAL
 {
     public class SurveySqlDAO : ISurveyDAO
     {
+        private readonly string connectionString;
+
         public SurveySqlDAO(string connectionString)
         {
-            this.ConnectionString = connectionString;
+            this.connectionString = connectionString;
         }
-
-        private string ConnectionString;
 
         // Return a list of all surveys completed
         public IList<SurveyResults> GetAllSurveys()
@@ -25,23 +25,25 @@ namespace WebApplication.Web.DAL
             // Open a connection to database
             try
             {
-                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
 
-                    //string sql = "SELECT * FROM survey_result;";
+                    // string sql = "SELECT * FROM survey_result;";
                     string sql = "select p.parkName as parkname, p.parkCode as parkcode, count(*) as parkscount from survey_result sr " +
                         "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName, p.parkCode ORDER BY count(*) DESC;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     // Read in the survey result rows and store them in a list
-                    while(reader.Read())
+                    while (reader.Read())
                     {
-                        SurveyResults results = new SurveyResults();
-                        results.ParksCount = Convert.ToInt32(reader["parkscount"]);
-                        results.ParkName = Convert.ToString(reader["parkname"]);
-                        results.ParkCode = Convert.ToString(reader["parkcode"]);
+                        SurveyResults results = new SurveyResults
+                        {
+                            ParksCount = Convert.ToInt32(reader["parkscount"]),
+                            ParkName = Convert.ToString(reader["parkname"]),
+                            ParkCode = Convert.ToString(reader["parkcode"])
+                        };
 
                         surveys.Add(results);
                     }
@@ -50,24 +52,10 @@ namespace WebApplication.Web.DAL
                 // Return the list of all surveys
                 return surveys;
             }
-            catch(SqlException ex)
+            catch (SqlException)
             {
                 throw;
             }
-        }
-
-        private Survey ConvertReaderToSurvey(SqlDataReader reader)
-        {
-            Survey survey = new Survey()
-            {
-                SurveyId = Convert.ToInt32(reader["surveyid"]),
-                ParkCode = Convert.ToString(reader["parkcode"]),
-                EmailAddress = Convert.ToString(reader["emailaddress"]),
-                State = Convert.ToString(reader["state"]),
-                ActivityLevel = Convert.ToString(reader["activitylevel"])
-            };
-
-            return survey;
         }
 
         /// <summary>
@@ -81,7 +69,7 @@ namespace WebApplication.Web.DAL
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
 
@@ -91,7 +79,7 @@ namespace WebApplication.Web.DAL
                     cmd.Parameters.AddWithValue("@state", survey.State);
                     cmd.Parameters.AddWithValue("@activity", survey.ActivityLevel);
 
-                    isAdded = (cmd.ExecuteNonQuery() == 1);
+                    isAdded = cmd.ExecuteNonQuery() == 1;
                 }
             }
             catch (SqlException)

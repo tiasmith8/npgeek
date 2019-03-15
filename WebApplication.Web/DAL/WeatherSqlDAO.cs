@@ -9,28 +9,30 @@ namespace WebApplication.Web.DAL
 {
     public class WeatherSqlDAO : IWeatherDAO
     {
+        private readonly string connectionString;
+
         /// <summary>
+        /// Initializes a new instance of the <see cref="WeatherSqlDAO"/> class.
         /// Creates a new WeatherSqlDAO
         /// </summary>
         /// <param name="connectionString">Location of data</param>
         public WeatherSqlDAO(string connectionString)
         {
-            this.ConnectionString = connectionString;
+            this.connectionString = connectionString;
         }
 
-        private string ConnectionString;
-
         /// <summary>
-        /// Returns an IList<> of all Weather found in data for a Park identified uniquely by parkId
+        /// Reads data source and returns 5-day forecast for Park identified by parkId
         /// </summary>
-        /// <returns>IList<> of Weather objects</returns>
+        /// <param name="parkId">Uniquely identifies a Park</param>
+        /// <returns>5-Day Weather forecast</returns>
         public IList<Weather> GetWeather(string parkId)
         {
             IList<Weather> forecast = new List<Weather>();
 
             try
             {
-                using (SqlConnection conn = new SqlConnection(this.ConnectionString))
+                using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
                     conn.Open();
 
@@ -40,7 +42,7 @@ namespace WebApplication.Web.DAL
 
                     while (reader.Read())
                     {
-                        Weather weather = ConvertReaderToWeather(reader);
+                        Weather weather = this.ConvertReaderToWeather(reader);
                         forecast.Add(weather);
                     }
                 }
