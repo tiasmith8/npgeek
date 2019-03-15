@@ -19,7 +19,6 @@ namespace WebApplication.Tests.DAL
 
             // Act - Should return just the park created in setting up test data
             IList<Park> NumOfParks = dao.GetParks();
-            //int endingRowCount = GetRowCount("park");
             int actualRowCount = NumOfParks.Count;
 
             // Assert
@@ -35,8 +34,13 @@ namespace WebApplication.Tests.DAL
             // Act - Get the park created in test data
             Park park = dao.GetPark("ABC");
 
-            // Assert
-            Assert.AreEqual("Kings Dominion", park.ParkName);
+            // Assert - The park name should be the same as what was created in test-script.sql
+            Assert.AreEqual("Kings Dominion", park.ParkName, "Park name returned should be Kings Dominion.");
+
+            // The rest of the data should returned same as test data in test-script.sql
+            Assert.AreEqual("VA", park.State, "State returned should be VA.");
+            Assert.AreEqual(1982, park.YearFounded, "Year founded should return 1982.");
+            Assert.AreEqual(12, park.AnnualVisitorCount, "Annual Visitor count should be returned as 12.");
         }
     }
 }
