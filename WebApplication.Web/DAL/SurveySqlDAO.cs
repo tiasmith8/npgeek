@@ -27,8 +27,10 @@ namespace WebApplication.Web.DAL
             {
                 using (SqlConnection conn = new SqlConnection(this.connectionString))
                 {
+                    // Open the connection
                     conn.Open();
 
+                    // Create query to pull back survey results ordered by number of votes then park name
                     string sql = "select p.parkName as parkname, p.parkCode as parkcode, count(*) as parkscount from survey_result sr " +
                         "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName, p.parkCode ORDER BY count(*) DESC, p.parkName ASC;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
@@ -37,6 +39,7 @@ namespace WebApplication.Web.DAL
                     // Read in the survey result rows and store them in a list
                     while (reader.Read())
                     {
+                        // Loop through all of the survey results returned
                         SurveyResults results = new SurveyResults
                         {
                             ParksCount = Convert.ToInt32(reader["parkscount"]),
@@ -44,6 +47,7 @@ namespace WebApplication.Web.DAL
                             ParkCode = Convert.ToString(reader["parkcode"])
                         };
 
+                        // Save all surveys to a list of SurveyResults
                         surveys.Add(results);
                     }
                 }
