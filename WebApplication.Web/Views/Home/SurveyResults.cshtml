@@ -5,7 +5,7 @@
 
 <div class="survey-page">
     <div id="fav-parks">
-        <h2>Favorite Parks</h2>
+        <h2>Favorite Parks <img id="mountain" src="~/images/scenery.png" /></h2>
         <p>
             Here are the survey results for the favorite parks. It is listed in order of favorite
             parks as determined by this survey! Thank you for participating in the survey and
@@ -30,7 +30,7 @@
             @foreach (SurveyResults results in @Model)
             {
                 <tr>
-                    <td class="img-td"><span><img src="~/images/@(results.ParkCode).jpg" /></span></td>
+                    <td class="img-td"><span><a asp-controller="home" asp-action="detail" asp-route-parkcode="@results.ParkCode"><img src="~/images/@(results.ParkCode).jpg" /></a></span></td>
                     <td class="park-name"><span>@results.ParkName</span></td>
                     <td class="num-votes"><span>@results.ParksCount</span></td>
                 </tr>
