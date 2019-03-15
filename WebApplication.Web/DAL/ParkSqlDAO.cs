@@ -9,6 +9,10 @@ namespace WebApplication.Web.DAL
 {
     public class ParkSqlDAO : IParkDAO
     {
+        /// <summary>
+        /// Creates a new ParkSqlDAO
+        /// </summary>
+        /// <param name="connectionString">Location of data</param>
         public ParkSqlDAO(string connectionString)
         {
             this.ConnectionString = connectionString;
@@ -16,6 +20,11 @@ namespace WebApplication.Web.DAL
 
         private string ConnectionString;
 
+        /// <summary>
+        /// Returns a Park based on parkId
+        /// </summary>
+        /// <param name="parkId">The code identifying a unique Park</param>
+        /// <returns>A Park</returns>
         public Park GetPark(string parkId)
         {
             Park park = new Park();
@@ -45,6 +54,10 @@ namespace WebApplication.Web.DAL
 
         }
 
+        /// <summary>
+        /// Returns an IList<> of all Parks found in data
+        /// </summary>
+        /// <returns>IList<> of Parks</returns>
         public IList<Park> GetParks()
         {
             IList<Park> parks = new List<Park>();
@@ -73,6 +86,11 @@ namespace WebApplication.Web.DAL
             return parks;
         }
 
+        /// <summary>
+        /// Uses an SqlDataReader to convert Sql results into Park object
+        /// </summary>
+        /// <param name="reader">SqlDataReader containing Sql results</param>
+        /// <returns>A Park object</returns>
         private Park ConvertReaderToPark(SqlDataReader reader)
         {
             Park park = new Park()
