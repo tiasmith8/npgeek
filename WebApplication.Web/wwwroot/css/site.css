@@ -9,6 +9,26 @@
     background-color: var(--site-bgc);
 }
 
+.parks, .detail-view, #park-survey-h2 {
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+#nav-items {
+    margin-bottom: 0;
+}
+
+.sticky + .content {
+    padding-top: 49px;
+}
+
+#nav-header {
+    margin: 0;
+}
 /* Making park a flexbox to display on the HomeController Index page */
 .park {
     display: flex;
