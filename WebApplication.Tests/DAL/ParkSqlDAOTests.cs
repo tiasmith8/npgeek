@@ -14,16 +14,29 @@ namespace WebApplication.Tests.DAL
         [TestMethod]
         public void GetAllParksShouldReturnOnePark()
         {
-            //Arrange
+            // Arrange
             ParkSqlDAO dao = new ParkSqlDAO(ConnectionString);
 
-            // Should return just the park created in setting up test data
+            // Act - Should return just the park created in setting up test data
             IList<Park> NumOfParks = dao.GetParks();
             //int endingRowCount = GetRowCount("park");
             int actualRowCount = NumOfParks.Count;
 
-            //Assert
+            // Assert
             Assert.AreEqual(actualRowCount, 1);
+        }
+
+        [TestMethod]
+        public void GetParkByIdShouldReturnCreatedPark()
+        {
+            // Arrange
+            ParkSqlDAO dao = new ParkSqlDAO(ConnectionString);
+
+            // Act - Get the park created in test data
+            Park park = dao.GetPark("ABC");
+
+            // Assert
+            Assert.AreEqual("Kings Dominion", park.ParkName);
         }
     }
 }
