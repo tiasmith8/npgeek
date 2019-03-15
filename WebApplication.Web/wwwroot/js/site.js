@@ -1,30 +1,11 @@
 ﻿// Looks at cookies to determine if user prefers Celsius over the default Fahrenheit.
 // Sets the tempConvert checkbox appropriately and makes a call to convert to Celsius if necessary.
 function checkCelsius() {
-    // Get all cookies
-    var allCookies = document.cookie;
-    // Split cookies into array
-    var cookiearray = allCookies.split(';');
-    var toCelsius;
-
-    // Loop through cookie array
-    for (var i = 0; i < cookiearray.length; i++) {
-        name = cookiearray[i].split('=')[0];
-        value = cookiearray[i].split('=')[1];
-        // If we find the conversion cookie
-        if (name == "toCelsius") {
-            // Save its value to variable
-            toCelsius = value;
-        }
-    }
-
-    // If a cookie is found and user wants to convert to Celsius
-    if (toCelsius == "true") {
+    if(localStorage.getItem("toCelsius") == "true")
         // Set checkbox to checked
         document.getElementById("tempConvert").checked = true;
         // And convert to Celsius
         setTemp();
-    }
     // Otherwise keep default values (unchecked, Fahrenheit)
 }
 
@@ -36,9 +17,7 @@ function setTemp() {
 
     // If user would like to convert to Celcius (checked)
     if (checkBox.checked) {
-        // Expire previous toCelsius cookie and create new one
-        document.cookie = "toCelsius=true; path=/; expires = Thu, 01 Jan 1970 00: 00: 00 GMT";
-        document.cookie = "toCelsius=true; path=/";
+        localStorage.setItem("toCelsius", "true");
 
         // Loop through 5-day forecast
         for (var i = 0; i < 5; i++) {
@@ -56,9 +35,7 @@ function setTemp() {
         }
         // ELSE
     } else {
-        // Overwrite cookie
-        document.cookie = "toCelsius=false; path=/; expires = Thu, 01 Jan 1970 00: 00: 00 GMT";
-        document.cookie = "toCelsius=false; path=/";
+        localStorage.setItem("toCelsius", "false");
 
         // Convert to Fahrenheit
         for (i = 0; i < 5; i++) {
