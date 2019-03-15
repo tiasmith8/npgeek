@@ -47,7 +47,7 @@
         @for (int i = 0; i < Model.forecast.Count; i++)
         {
             <div class="daily-forecast day-@i">
-                <p>@days[Model.forecast[i].FiveDayForecastValue - 1]</p>
+                <h5>@days[Model.forecast[i].FiveDayForecastValue - 1]</h5>
                 <img src="~/images/@(Model.forecast[i].Forecast).png" alt="Weather Image" />
 
 
@@ -61,7 +61,7 @@
                     {
                         <p>@preparations["hot"]</p>
                     }
-                    @if (Model.forecast[i].High - Model.forecast[i].Low >= 20)
+                    @if (Model.forecast[i].High - Model.forecast[i].Low > 20)
                     {
                         <p>@preparations["variable"]</p>
                     }
