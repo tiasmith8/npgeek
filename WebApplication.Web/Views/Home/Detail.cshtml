@@ -4,7 +4,7 @@
     ViewData["Title"] = "Detail";
     DayOfWeek today = DateTime.Now.DayOfWeek;
     string[] days = { "Today", "Tomorrow", ((DayOfWeek)(((int)today + 2) % 7)).ToString(), ((DayOfWeek)(((int)today + 3) % 7)).ToString(), ((DayOfWeek)(((int)today + 4) % 7)).ToString(), };
-    Dictionary<string, string> preparations = new Dictionary<string, string>() { { "snow", "Pack snowshoes" }, { "rain", "Pack rain gear and wear waterproof shoes" }, { "thunderstorms", "Seek shelter and avoid hiking on exposed ridges" }, { "sunny", "Pack sunblock" }, { "hot", "Bring an extra gallon of water" }, { "variable", "Wear breathable layers" }, { "cold", "Cold Weather Warning" }, { "partly cloudy", "Partly cloudy skies" }, { "cloudy", "Cloudy skies" } };
+    Dictionary<string, string> preparations = new Dictionary<string, string>() { { "snow", "🌨 Pack snowshoes" }, { "rain", "🌧 Pack rain gear and wear waterproof shoes" }, { "thunderstorms", "⛈ Seek shelter and avoid hiking on exposed ridges" }, { "sunny", "🌞 Pack sunblock" }, { "hot", "🌡 Bring an extra gallon of water" }, { "variable", "🚶‍ Wear breathable layers" }, { "cold", "🌬 Cold Weather Warning" }, { "partly cloudy", "🌥 Partly cloudy skies" }, { "cloudy", "☁ Cloudy skies" } };
 }
 
 <main class="detail-view">
@@ -41,15 +41,11 @@
     <section class="weather-forecast">
         <h2>Weather Forecast</h2>
 
-
-
-
         @for (int i = 0; i < Model.Forecast.Count; i++)
         {
             <div class="daily-forecast day-@i">
                 <h5>@days[Model.Forecast[i].FiveDayForecastValue - 1]</h5>
                 <img src="~/images/@(Model.Forecast[i].Forecast).png" alt="Weather Image" />
-
 
                 <p>High: <span id="high-temp-day-@i">@Model.Forecast[i].High</span><span id="degree-type-high-day-@i"> &#8457</span></p>
                 <p>Low: <span id="low-temp-day-@i">@Model.Forecast[i].Low</span><span id="degree-type-low-day-@i"> &#8457</span></p>
