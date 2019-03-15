@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WebApplication.Web.DAL;
-using WebApplication.Web.Providers.Auth;
 
 namespace WebApplication.Web
 {
@@ -47,9 +46,6 @@ namespace WebApplication.Web
             // For Authentication to work
             // For access to session outside of controller
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            // For access to an authentication provider
-            services.AddScoped<IAuthProvider, SessionAuthProvider>();
 
             // For access to a dao
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(this.Configuration.GetConnectionString("NPGeek")));
