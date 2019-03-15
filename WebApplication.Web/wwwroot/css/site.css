@@ -264,3 +264,7 @@ div.daily-forecast {
     text-align: right;*/
     /*white-space: nowrap;*/
 }
+
+.HomeSurveryNav ul {
+    padding-top: 10px;
+}
