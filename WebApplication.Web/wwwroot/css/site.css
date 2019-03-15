@@ -204,13 +204,17 @@ div.daily-forecast {
 }
 
 .survey-fav-park-name, .survey-email, .survey-state {
-    width: 40%;
+    width: 55%;
     display: flex;
 }
 
     .survey-fav-park-name > label, .survey-email > label, .survey-state > label {
-        width: 100%;
+        width: 25%;
     }
+
+.form-control#ParkCode, .form-control#EmailAddress, .form-control#State {
+    width: 40%;
+}
 
 #activity-level-span {
     margin-right: 5px;
@@ -256,11 +260,9 @@ div.daily-forecast {
 }
 
 .radio-buttons {
-    margin-left: 148px;
+    margin-left: 60px;
 }
 
-.form-group span {
-    /*background-color: red;
-    text-align: right;*/
-    /*white-space: nowrap;*/
+input[type=radio] {
+    margin-left: 15px;
 }
