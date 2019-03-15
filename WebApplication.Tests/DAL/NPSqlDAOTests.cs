@@ -55,7 +55,7 @@ namespace WebApplication.Tests.DAL
             }
             catch(SqlException ex)
             {
-                throw;
+                throw ex;
             }
         }
 

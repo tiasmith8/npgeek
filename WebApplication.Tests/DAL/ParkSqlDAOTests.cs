@@ -19,7 +19,8 @@ namespace WebApplication.Tests.DAL
 
             // Act - Should return just the park created in setting up test data
             IList<Park> NumOfParks = dao.GetParks();
-            //int endingRowCount = GetRowCount("park");
+
+            // int endingRowCount = GetRowCount("park");
             int actualRowCount = NumOfParks.Count;
 
             // Assert

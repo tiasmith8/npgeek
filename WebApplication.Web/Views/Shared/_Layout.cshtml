@@ -9,18 +9,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body id="body" onload="checkCelsius()">
-    <h1 id="nav-header">
-        @* Clicking on logo/header text navigates to main page. *@
-        <a asp-controller="Home" asp-action="Index">
-        <img id="main-img" src="~/images/national-park-geek.jpg" /> National Park Geek</a>
-    </h1>
-    <div class="HomeSurveyNav">
-        <ul>
-            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-            <li><a asp-controller="Home" asp-action="Survey">Survey</a></li>
-            <li><label class="converter-container"><input type="checkbox" id="tempConvert" onclick="setTemp()" />Celsius Converter</label></li>
-        </ul>
-    </div>
+        <h1 id="nav-header">
+            @* Clicking on logo/header text navigates to main page. *@
+            <a asp-controller="Home" asp-action="Index">
+                <img id="main-img" src="~/images/national-park-geek.jpg" /> National Park Geek
+            </a>
+        </h1>
+        <div id="nav-links" class="HomeSurveyNav">
+            <ul id="nav-items">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Home" asp-action="Survey">Survey</a></li>
+                <li><label class="converter-container"><input type="checkbox" id="tempConvert" onclick="setTemp()" />Celsius Converter</label></li>
+            </ul>
+        </div>
     @RenderBody()
 
 </body>
