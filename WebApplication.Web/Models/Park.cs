@@ -8,77 +8,77 @@ namespace WebApplication.Web.Models
     public class Park
     {
         /// <summary>
-        /// Code that uniquely identifies Park
+        /// Gets or sets code that uniquely identifies Park
         /// </summary>
         public string ParkCode { get; set; }
 
         /// <summary>
-        /// Name of Park
+        /// Gets or sets name of Park
         /// </summary>
         public string ParkName { get; set; }
 
         /// <summary>
-        /// State within which the Park is located
+        /// Gets or sets state within which the Park is located
         /// </summary>
         public string State { get; set; }
 
         /// <summary>
-        /// Total surface area of Park in acres
+        /// Gets or sets total surface area of Park in acres
         /// </summary>
         public int Acreage { get; set; }
 
         /// <summary>
-        /// Average elevation above sea level of Park in feet
+        /// Gets or sets average elevation above sea level of Park in feet
         /// </summary>
         public int ElevationInFeet { get; set; }
 
         /// <summary>
-        /// Total length of hiking trails in miles
+        /// Gets or sets total length of hiking trails in miles
         /// </summary>
         public double MilesOfTrail { get; set; }
 
         /// <summary>
-        /// Number of campsites within the Park
+        /// Gets or sets number of campsites within the Park
         /// </summary>
         public int NumberOfCampsites { get; set; }
 
         /// <summary>
-        /// Climate of Park
+        /// Gets or sets climate of Park
         /// </summary>
         public string Climate { get; set; }
 
         /// <summary>
-        /// Year in which the Park was founded
+        /// Gets or sets year in which the Park was founded
         /// </summary>
         public int YearFounded { get; set; }
 
         /// <summary>
-        /// Average annual visitors
+        /// Gets or sets average annual visitors
         /// </summary>
         public int AnnualVisitorCount { get; set; }
 
         /// <summary>
-        /// Quote related to the Park
+        /// Gets or sets quote related to the Park
         /// </summary>
         public string InspirationalQuote { get; set; }
 
         /// <summary>
-        /// Source of Quote
+        /// Gets or sets source of Quote
         /// </summary>
         public string InspirationalQuoteSource { get; set; }
 
         /// <summary>
-        /// Short description of Park
+        /// Gets or sets short description of Park
         /// </summary>
         public string ParkDescription { get; set; }
 
         /// <summary>
-        /// Fee required for entry to Park
+        /// Gets or sets fee required for entry to Park
         /// </summary>
         public int EntryFee { get; set; }
 
         /// <summary>
-        /// Number of species native to Park
+        /// Gets or sets number of species native to Park
         /// </summary>
         public int NumberOfAnimalSpecies { get; set; }
     }
