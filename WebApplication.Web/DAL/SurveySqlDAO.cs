@@ -29,9 +29,8 @@ namespace WebApplication.Web.DAL
                 {
                     conn.Open();
 
-                    // string sql = "SELECT * FROM survey_result;";
                     string sql = "select p.parkName as parkname, p.parkCode as parkcode, count(*) as parkscount from survey_result sr " +
-                        "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName, p.parkCode ORDER BY count(*) DESC;";
+                        "JOIN park p ON sr.parkCode = p.parkCode GROUP BY p.parkName, p.parkCode ORDER BY count(*) DESC, p.parkName ASC;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     SqlDataReader reader = cmd.ExecuteReader();
 
