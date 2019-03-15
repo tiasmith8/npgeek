@@ -16,12 +16,12 @@ namespace WebApplication.Tests.DAL
         /// <summary>
         /// Holds the newly generated park id for test data.
         /// </summary>
-        protected int NewParkId { get; private set; }
+        protected string NewParkId { get; private set; }
 
         /// <summary>
         /// Holds the newly generated survey id for integration test data.
         /// </summary>
-        public int NewSurveyId { get; private set; }
+        protected int NewSurveyId { get; private set; }
 
         /// <summary>
         /// The transaction for each test.
@@ -49,7 +49,7 @@ namespace WebApplication.Tests.DAL
                     // If there is a row to read
                     if (reader.Read())
                     {
-                        this.NewParkId = Convert.ToInt32(reader["newParkId"]);
+                        this.NewParkId = Convert.ToString(reader["newParkId"]);
                         this.NewSurveyId = Convert.ToInt32(reader["newSurveyId"]);
                     }
                 }

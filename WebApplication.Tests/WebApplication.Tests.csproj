@@ -20,4 +20,10 @@
     <ProjectReference Include="..\WebApplication.Web\WebApplication.Web.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="test-script.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
