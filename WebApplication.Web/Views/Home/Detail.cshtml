@@ -27,13 +27,13 @@
         </div>
         <div class="park-information">
             <h3>Park Information</h3>
-            <p><span>Acreage:</span> @Model.Park.Acreage</p>
+            <p><span>Acreage:</span> @Model.Park.Acreage acres</p>
             <p><span>Elevation:</span> @Model.Park.ElevationInFeet feet</p>
-            <p><span>Miles of Hiking Trail:</span> @Model.Park.MilesOfTrail</p>
+            <p><span>Hiking Trails:</span> @Model.Park.MilesOfTrail.ToString("N0") miles</p>
             <p><span>Number of Campsites:</span> @Model.Park.NumberOfCampsites</p>
             <p><span>Year Founded:</span> @Model.Park.YearFounded</p>
-            <p><span>Average Visitors per Year:</span> @Model.Park.AnnualVisitorCount</p>
-            <p><span>Entry Fee:</span> @Model.Park.EntryFee</p>
+            <p><span>Visitors:</span> @Model.Park.AnnualVisitorCount per Year</p>
+            <p><span>Entry Fee:</span> @Model.Park.EntryFee.ToString("C2")</p>
             <p><span>Animal Species:</span> @Model.Park.NumberOfAnimalSpecies</p>
             <p>Climate: @Model.Park.Climate</p>
         </div>
