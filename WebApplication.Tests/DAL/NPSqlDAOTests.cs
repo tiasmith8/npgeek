@@ -49,7 +49,6 @@ namespace WebApplication.Tests.DAL
                     // If there is a row to read
                     if (reader.Read())
                     {
-                        this.NewParkId = Convert.ToString(reader["newParkId"]);
                         this.NewSurveyId = Convert.ToInt32(reader["newSurveyId"]);
                     }
                 }

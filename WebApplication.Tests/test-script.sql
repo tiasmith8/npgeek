@@ -11,5 +11,5 @@ INSERT INTO park VALUES('ABC', 'Kings Dominion', 'VA', 12000, 1, 2, 0, 'Rainy', 
 INSERT INTO survey_result VALUES('ABC', 'd@yo.org', 'VA', 'active');
 DECLARE @newSurveyId int = (SELECT @@IDENTITY);
 
--- Send value back
-SELECT 'ABC' as newParkId, @newSurveyId as newSurveyId;
+-- Send new surveyId value back
+SELECT @newSurveyId as newSurveyId;

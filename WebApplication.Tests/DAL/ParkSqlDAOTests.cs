@@ -12,36 +12,18 @@ namespace WebApplication.Tests.DAL
     {
 
         [TestMethod]
-        public void AddNewParkShouldReturnThePark()
+        public void GetAllParksShouldReturnOnePark()
         {
-            //Arrange - Create a new park to test.
-            Park park = new Park();
-            park.ParkName = "Wild World";
-            park.YearFounded = 1982;
-            park.State = "MD";
-            park.ParkDescription = "A really cool park.";
-            park.ParkCode = "WWP";
-            park.NumberOfCampsites = 0;
-            park.NumberOfAnimalSpecies = 0;
-            park.MilesOfTrail = 12;
-            park.InspirationalQuote = "Once you do it, then it's done!";
-            park.InspirationalQuoteSource = "A wise person";
-            park.EntryFee = 25;
-            park.ElevationInFeet = 25;
-            park.Climate = "Awesome";
-            park.AnnualVisitorCount = 2;
-            park.Acreage = 12;
-
+            //Arrange
             ParkSqlDAO dao = new ParkSqlDAO(ConnectionString);
-            int startingRowCount = GetRowCount("park");
 
-            //Act - get the newly created park by ID.
-            dao.GetPark("WWP");
-            int endingRowCout = GetRowCount("park");
+            // Should return just the park created in setting up test data
+            IList<Park> NumOfParks = dao.GetParks();
+            //int endingRowCount = GetRowCount("park");
+            int actualRowCount = NumOfParks.Count;
 
             //Assert
-            Assert.AreEqual(startingRowCount + 1, endingRowCout);
-
+            Assert.AreEqual(actualRowCount, 1);
         }
     }
 }
