@@ -2,6 +2,11 @@
     --bg-color: #EEE;
     --border-color: #CCC;
     --link-color: #007bff;
+    --site-bgc: #ffeebb;
+}
+
+#body {
+    background-color: var(--site-bgc);
 }
 
 /* Making park a flexbox to display on the HomeController Index page */
@@ -235,7 +240,7 @@ div.daily-forecast {
 }
 
 .survey-fav-park-name, .survey-email, .survey-state {
-    width: 55%;
+    width: 70%;
     display: flex;
 }
 
@@ -245,6 +250,7 @@ div.daily-forecast {
 
 .form-control#ParkCode, .form-control#EmailAddress, .form-control#State {
     width: 40%;
+    margin-right: 10px;
 }
 
 #activity-level-span {
@@ -291,10 +297,16 @@ div.daily-forecast {
 }
 
 .radio-buttons {
-    margin-left: 60px;
+    margin-left: 100px;
 }
 
 input[type=radio] {
     margin-left: 15px;
 }
 
+input[type=submit] {
+    position: relative;
+    left: 20%;
+    width: 15%;
+    margin-bottom: 100px;
+}
