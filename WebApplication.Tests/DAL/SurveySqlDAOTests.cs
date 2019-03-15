@@ -39,10 +39,6 @@ namespace WebApplication.Tests.DAL
 
             // Assert - sending new survey should return true
             Assert.AreEqual(true, actual, "Creating new survey should return true");
-
         }
-
-
-
     }
 }
