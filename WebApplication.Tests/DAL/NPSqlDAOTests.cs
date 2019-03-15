@@ -37,8 +37,8 @@ namespace WebApplication.Tests.DAL
             // Get the SQL Script to run
             string sql = File.ReadAllText("test-script.sql");
 
-            //try
-            //{
+            try
+            {
                 // Execute the setup script
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
@@ -53,11 +53,11 @@ namespace WebApplication.Tests.DAL
                         this.NewSurveyId = Convert.ToInt32(reader["newSurveyId"]);
                     }
                 }
-            //}
-            //catch(SqlException ex)
-            //{
-            //    throw;
-            //}
+            }
+            catch(SqlException ex)
+            {
+                throw;
+            }
         }
 
         [TestCleanup]
@@ -65,6 +65,22 @@ namespace WebApplication.Tests.DAL
         {
             // Roll back the transaction
             transaction.Dispose();
+        }
+
+        /// <summary>
+        /// Gets the row count for table.
+        /// </summary>
+        /// <param name="table"></param>
+        /// <returns></returns>
+        protected int GetRowCount(string table)
+        {
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand($"SELECT COUNT(*) FROM {table}", conn);
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count;
+            }
         }
     }
 }
